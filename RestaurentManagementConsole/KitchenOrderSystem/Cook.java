@@ -1,9 +1,9 @@
-package hotelManagementConsole.KitchenOrderSystem;
+package RestaurentManagementConsole.KitchenOrderSystem;
 
 import java.util.HashMap;
 
-import hotelManagementConsole.Person;
-import hotelManagementConsole.Orders.NewOrder;
+import RestaurentManagementConsole.Person;
+import RestaurentManagementConsole.Orders.NewOrder;
 
 public class Cook extends Person {
 

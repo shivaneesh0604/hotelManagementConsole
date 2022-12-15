@@ -1,12 +1,12 @@
-package hotelManagementConsole.customer;
+package RestaurentManagementConsole.customer;
 
 import java.util.ArrayList;
 
-import hotelManagementConsole.Person;
-import hotelManagementConsole.Cashier.Bill;
-import hotelManagementConsole.Orders.NewOrder;
-import hotelManagementConsole.menu.UserMenu;
-import hotelManagementConsole.waiter.Waiter;
+import RestaurentManagementConsole.Person;
+import RestaurentManagementConsole.Cashier.Bill;
+import RestaurentManagementConsole.Orders.NewOrder;
+import RestaurentManagementConsole.menu.UserMenu;
+import RestaurentManagementConsole.waiter.Waiter;
 
 public class Customer extends Person {
 

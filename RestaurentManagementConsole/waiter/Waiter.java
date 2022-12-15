@@ -1,19 +1,19 @@
-package hotelManagementConsole.waiter;
+package RestaurentManagementConsole.waiter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import hotelManagementConsole.Person;
-import hotelManagementConsole.Cashier.Bill;
-import hotelManagementConsole.Cashier.Cashier;
-import hotelManagementConsole.KitchenOrderSystem.KitchenSystem;
-import hotelManagementConsole.KitchenOrderSystem.Chef;
-import hotelManagementConsole.Orders.NewOrder;
-import hotelManagementConsole.Orders.Orders;
-import hotelManagementConsole.customer.Customer;
-import hotelManagementConsole.menu.Menu;
-import hotelManagementConsole.menu.UserMenu;
+import RestaurentManagementConsole.Person;
+import RestaurentManagementConsole.Cashier.Bill;
+import RestaurentManagementConsole.Cashier.Cashier;
+import RestaurentManagementConsole.KitchenOrderSystem.Chef;
+import RestaurentManagementConsole.KitchenOrderSystem.KitchenSystem;
+import RestaurentManagementConsole.Orders.NewOrder;
+import RestaurentManagementConsole.Orders.Orders;
+import RestaurentManagementConsole.customer.Customer;
+import RestaurentManagementConsole.menu.Menu;
+import RestaurentManagementConsole.menu.UserMenu;
 
 public class Waiter extends Person {
 

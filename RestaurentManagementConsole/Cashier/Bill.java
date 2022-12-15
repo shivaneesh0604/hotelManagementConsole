@@ -1,11 +1,11 @@
-package hotelManagementConsole.Cashier;
+package RestaurentManagementConsole.Cashier;
 
 import java.util.ArrayList;
 
-import hotelManagementConsole.Orders.NewOrder;
-import hotelManagementConsole.menu.Item;
-import hotelManagementConsole.menu.Menu;
-import hotelManagementConsole.menu.UserMenu;
+import RestaurentManagementConsole.Orders.NewOrder;
+import RestaurentManagementConsole.menu.Item;
+import RestaurentManagementConsole.menu.Menu;
+import RestaurentManagementConsole.menu.UserMenu;
 
 public class Bill {
 

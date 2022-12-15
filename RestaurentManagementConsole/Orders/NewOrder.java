@@ -1,4 +1,4 @@
-package hotelManagementConsole.Orders;
+package RestaurentManagementConsole.Orders;
 
 public class NewOrder {
 

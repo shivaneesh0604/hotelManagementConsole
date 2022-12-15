@@ -1,4 +1,4 @@
-package hotelManagementConsole;
+package RestaurentManagementConsole;
 
 public abstract class Person {
     private final int id;

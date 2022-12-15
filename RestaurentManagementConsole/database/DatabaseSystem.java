@@ -1,8 +1,8 @@
-package hotelManagementConsole.database;
+package RestaurentManagementConsole.database;
 
-import hotelManagementConsole.KitchenOrderSystem.Cook;
-import hotelManagementConsole.customer.Customer;
-import hotelManagementConsole.waiter.Waiter;
+import RestaurentManagementConsole.KitchenOrderSystem.Cook;
+import RestaurentManagementConsole.customer.Customer;
+import RestaurentManagementConsole.waiter.Waiter;
 
 public class DatabaseSystem implements CustomerDatabase,WaiterDatabase,WorkerDatabase {
     

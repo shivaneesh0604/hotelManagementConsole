@@ -1,12 +1,12 @@
-package hotelManagementConsole.database;
+package RestaurentManagementConsole.database;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import hotelManagementConsole.KitchenOrderSystem.Cook;
-import hotelManagementConsole.KitchenOrderSystem.Chef;
-import hotelManagementConsole.customer.Customer;
-import hotelManagementConsole.waiter.Waiter;
+import RestaurentManagementConsole.KitchenOrderSystem.Chef;
+import RestaurentManagementConsole.KitchenOrderSystem.Cook;
+import RestaurentManagementConsole.customer.Customer;
+import RestaurentManagementConsole.waiter.Waiter;
 
 public class Database {
 

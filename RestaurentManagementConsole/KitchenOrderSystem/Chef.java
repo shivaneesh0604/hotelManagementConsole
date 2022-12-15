@@ -1,13 +1,13 @@
-package hotelManagementConsole.KitchenOrderSystem;
+package RestaurentManagementConsole.KitchenOrderSystem;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-import hotelManagementConsole.Person;
-import hotelManagementConsole.Orders.NewOrder;
-import hotelManagementConsole.Orders.Orders;
-import hotelManagementConsole.waiter.Waiter;
+import RestaurentManagementConsole.Person;
+import RestaurentManagementConsole.Orders.NewOrder;
+import RestaurentManagementConsole.Orders.Orders;
+import RestaurentManagementConsole.waiter.Waiter;
 
 public class Chef extends Person implements KitchenSystem  {
 

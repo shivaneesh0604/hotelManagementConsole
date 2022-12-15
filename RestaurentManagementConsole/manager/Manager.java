@@ -1,19 +1,19 @@
-package hotelManagementConsole.manager;
+package RestaurentManagementConsole.manager;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-import hotelManagementConsole.Person;
-import hotelManagementConsole.KitchenOrderSystem.Cook;
-import hotelManagementConsole.customer.Customer;
-import hotelManagementConsole.database.CustomerDatabase;
-import hotelManagementConsole.database.DatabaseSystem;
-import hotelManagementConsole.database.WaiterDatabase;
-import hotelManagementConsole.database.WorkerDatabase;
-import hotelManagementConsole.menu.Item;
-import hotelManagementConsole.menu.Menu;
-import hotelManagementConsole.waiter.Waiter;
+import RestaurentManagementConsole.Person;
+import RestaurentManagementConsole.KitchenOrderSystem.Cook;
+import RestaurentManagementConsole.customer.Customer;
+import RestaurentManagementConsole.database.CustomerDatabase;
+import RestaurentManagementConsole.database.DatabaseSystem;
+import RestaurentManagementConsole.database.WaiterDatabase;
+import RestaurentManagementConsole.database.WorkerDatabase;
+import RestaurentManagementConsole.menu.Item;
+import RestaurentManagementConsole.menu.Menu;
+import RestaurentManagementConsole.waiter.Waiter;
 
 public class Manager extends Person {
     Scanner sc = new Scanner(System.in);

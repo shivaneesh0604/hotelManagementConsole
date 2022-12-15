@@ -1,12 +1,12 @@
-package hotelManagementConsole;
+package RestaurentManagementConsole;
 
 import java.util.Scanner;
 
-import hotelManagementConsole.KitchenOrderSystem.Cook;
-import hotelManagementConsole.KitchenOrderSystem.Chef;
-import hotelManagementConsole.customer.Customer;
-import hotelManagementConsole.manager.*;
-import hotelManagementConsole.waiter.Waiter;
+import RestaurentManagementConsole.KitchenOrderSystem.Chef;
+import RestaurentManagementConsole.KitchenOrderSystem.Cook;
+import RestaurentManagementConsole.customer.Customer;
+import RestaurentManagementConsole.manager.*;
+import RestaurentManagementConsole.waiter.Waiter;
 
 public class App {
     public static void main(String[] args) {

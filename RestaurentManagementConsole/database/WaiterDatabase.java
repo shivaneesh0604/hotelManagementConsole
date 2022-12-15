@@ -1,6 +1,6 @@
-package hotelManagementConsole.database;
+package RestaurentManagementConsole.database;
 
-import hotelManagementConsole.waiter.Waiter;
+import RestaurentManagementConsole.waiter.Waiter;
 
 public interface WaiterDatabase {
     public void addWaitersToDatabase(Waiter waiter);

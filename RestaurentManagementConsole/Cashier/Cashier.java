@@ -1,10 +1,10 @@
-package hotelManagementConsole.Cashier;
+package RestaurentManagementConsole.Cashier;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import hotelManagementConsole.Person;
-import hotelManagementConsole.Orders.NewOrder;
+import RestaurentManagementConsole.Person;
+import RestaurentManagementConsole.Orders.NewOrder;
 
 public class Cashier extends Person {
 

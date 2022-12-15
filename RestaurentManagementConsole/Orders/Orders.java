@@ -1,4 +1,4 @@
-package hotelManagementConsole.Orders;
+package RestaurentManagementConsole.Orders;
 
 import java.util.ArrayList;
 import java.util.Iterator;

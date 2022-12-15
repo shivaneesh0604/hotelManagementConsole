@@ -1,4 +1,4 @@
-package hotelManagementConsole.menu;
+package RestaurentManagementConsole.menu;
 
 public class Item {
 
