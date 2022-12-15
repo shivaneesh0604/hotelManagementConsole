@@ -11,14 +11,17 @@ public class Bill {
 
     private final UserMenu menu;
     private final ArrayList<NewOrder> order;
+    private final String orderid;
     private float totalAmount;
 
-    public Bill(ArrayList<NewOrder> order) {
+    public Bill(ArrayList<NewOrder> order,String orderid) {
         this.order = order;
+        this.orderid = orderid;
         menu = Menu.getinstance();
     }
 
     public float ReadBill() {
+        System.out.println("\norder id is "+orderid);
         System.out.format(
                 "-----------------------------------------------------------------------------------------------------------------------------------");
         System.out.print("\nProductName\t\tQuantity\t\tRate \t\t\tTotal Price\n");
@@ -38,6 +41,7 @@ public class Bill {
             }
         }
         System.out.println("total price is "+totalPrice);
+        System.out.println("\n");
         totalAmount = totalPrice;
         return totalAmount; 
     }

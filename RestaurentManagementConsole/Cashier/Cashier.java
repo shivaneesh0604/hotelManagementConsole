@@ -24,7 +24,7 @@ public class Cashier extends Person {
     }
 
     public Bill generateBill(ArrayList<NewOrder> order, String orderid) {
-        Bill bill = new Bill(order);
+        Bill bill = new Bill(order,orderid);
         bills.put(orderid, bill);
         return bill;
     }
