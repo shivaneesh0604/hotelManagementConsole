@@ -1,9 +1,9 @@
 package hotelManagementConsole.database;
 
-import hotelManagementConsole.KitchenOrderSystem.Worker;
+import hotelManagementConsole.KitchenOrderSystem.Cook;
 
 public interface WorkerDatabase {
 
-    public void addWorkerToDb(Worker worker);
+    public void addWorkerToDb(Cook worker);
 
 }

@@ -1,6 +1,6 @@
 package hotelManagementConsole.database;
 
-import hotelManagementConsole.KitchenOrderSystem.Worker;
+import hotelManagementConsole.KitchenOrderSystem.Cook;
 import hotelManagementConsole.customer.Customer;
 import hotelManagementConsole.waiter.Waiter;
 
@@ -33,7 +33,7 @@ public class DatabaseSystem implements CustomerDatabase,WaiterDatabase,WorkerDat
     }
 
     @Override
-    public void addWorkerToDb(Worker worker) {
+    public void addWorkerToDb(Cook worker) {
         database.addWorkerToDb(worker);
     }
 

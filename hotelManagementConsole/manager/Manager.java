@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import hotelManagementConsole.Person;
-import hotelManagementConsole.KitchenOrderSystem.Worker;
+import hotelManagementConsole.KitchenOrderSystem.Cook;
 import hotelManagementConsole.customer.Customer;
 import hotelManagementConsole.database.CustomerDatabase;
 import hotelManagementConsole.database.DatabaseSystem;
@@ -65,7 +65,7 @@ public class Manager extends Person {
         waiterDatabase.addWaitersToDatabase(waiter);
     }
 
-    public void addWorkerToDb(Worker worker){
+    public void addWorkerToDb(Cook worker){
         workerDatabase.addWorkerToDb(worker);
     }
 
