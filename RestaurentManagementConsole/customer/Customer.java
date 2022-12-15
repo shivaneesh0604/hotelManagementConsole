@@ -13,9 +13,10 @@ public class Customer extends Person {
     private UserMenu menu;
     private Waiter waiter;
     private String tablenumber;
-    private String orderID;  
+    private String orderID;
     private Bill bill;
     private float BillTotalAmount;
+    private ArrayList<NewOrder> ordersReceived;
 
     public Customer(int id, String name) {
         super(id, name);
@@ -54,28 +55,29 @@ public class Customer extends Person {
     }
 
     public void receiveOrder(ArrayList<NewOrder> order) {
-        System.out.println("customer " + getName());
-        for (NewOrder order1 : order) {
-            System.out.println("Foodname received is " + order1.getFoodname() + " quantity is " + order1.getQuantity());
+        for (NewOrder orders : order) {
+            this.ordersReceived.add(orders);
+            System.out.println("Foodname received is " + orders.getFoodname() + " quantity is " + orders.getQuantity());
         }
     }
 
     public void askbill() {
         bill = waiter.askbill(this.getId());
     }
-    
-    public void ReadBill(){
+
+    public void ReadBill() {
         try {
             BillTotalAmount = bill.ReadBill();
         } catch (NullPointerException e) {
             System.out.println("Ask The Bill first");
         }
-        System.out.println("payable amount is "+BillTotalAmount);
+        System.out.println("payable amount is " + BillTotalAmount);
     }
 
-    public void paybill(float paymentAmount){
-        waiter.paybill(paymentAmount,this.getId());
+    public void paybill(float paymentAmount) {
+        waiter.paybill(paymentAmount, this.getId());
     }
+
     public Waiter getWaiter() {
         return waiter;
     }

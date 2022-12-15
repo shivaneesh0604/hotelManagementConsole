@@ -46,4 +46,8 @@ public class Bill {
         return totalAmount;
     }
 
+    public ArrayList<NewOrder> getOrder() {
+        return order;
+    }
+
 }
