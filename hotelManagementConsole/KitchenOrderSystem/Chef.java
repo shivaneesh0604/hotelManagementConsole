@@ -11,10 +11,10 @@ import hotelManagementConsole.waiter.Waiter;
 
 public class Chef extends Person implements KitchenSystem  {
 
-    private ArrayList<Worker> worker = new ArrayList<>();
+    private ArrayList<Cook> cook = new ArrayList<>();
     private HashMap<String, Orders> ordersFromWaiter = new HashMap<>();
     private HashMap<String, Waiter> waiterAck = new HashMap<>();
-    private HashMap<String, Orders> PreparedordersFromWorker = new HashMap<>();
+    private HashMap<String, Orders> PreparedordersFromCook = new HashMap<>();
 
     private Chef(int id,String name) {
         super(id, name);
@@ -29,8 +29,8 @@ public class Chef extends Person implements KitchenSystem  {
         return chef;
     }
 
-    public void addWorkersToChef(Worker worker) {
-        this.worker.add(worker);
+    public void addCookToChef(Cook Cook) {
+        this.cook.add(Cook);
     }
 
     @Override
@@ -64,25 +64,25 @@ public class Chef extends Person implements KitchenSystem  {
         }
     }
 
-    public void assignFoodToWorkerAndReceiveFood(String orderid) {
+    public void assignFoodToCookAndReceiveFood(String orderid) {
         Random random = new Random();
-        int index = random.nextInt(worker.size());
-        Worker worker2 = worker.get(index);
+        int index = random.nextInt(cook.size());
+        Cook cook2 = cook.get(index);
         try {
             Orders order = ordersFromWaiter.get(orderid);
             for (NewOrder newOrder : order.getOrders()) {
                 if (!newOrder.isDelivered() && newOrder.getQuantity() > 0) {
-                    NewOrder order3 = worker2.getfoodAndProcess(newOrder, this);
+                    NewOrder order3 = cook2.getfoodAndProcess(newOrder, this);
                     order3.setDelivered(true);
-                    if (this.PreparedordersFromWorker.containsKey(orderid)) {
-                        Orders order4 = PreparedordersFromWorker.get(orderid);
-                        System.out.println("prepared food from worker");
+                    if (this.PreparedordersFromCook.containsKey(orderid)) {
+                        Orders order4 = PreparedordersFromCook.get(orderid);
+                        System.out.println("prepared food from Cook");
                         order4.AddtoOrders(order3);
                     } else {
                         Orders order1 = new Orders();
-                        PreparedordersFromWorker.put(orderid, order1);
-                        Orders order2 = PreparedordersFromWorker.get(orderid);
-                        System.out.println("prepared food from worker are");
+                        PreparedordersFromCook.put(orderid, order1);
+                        Orders order2 = PreparedordersFromCook.get(orderid);
+                        System.out.println("prepared food from Cook are");
                         order2.AddtoOrders(order3);
                     }
                 }
@@ -94,8 +94,8 @@ public class Chef extends Person implements KitchenSystem  {
 
     public void sendFoodToWaiter(String orderID) {
         Waiter waiterans = waiterAck.get(orderID);
-        waiterans.ReceiveOrder(orderID, PreparedordersFromWorker.get(orderID));
+        waiterans.ReceiveOrder(orderID, PreparedordersFromCook.get(orderID));
         ordersFromWaiter.remove(orderID);
-        PreparedordersFromWorker.remove(orderID);
+        PreparedordersFromCook.remove(orderID);   
     }
 }

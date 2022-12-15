@@ -2,7 +2,7 @@ package hotelManagementConsole;
 
 import java.util.Scanner;
 
-import hotelManagementConsole.KitchenOrderSystem.Worker;
+import hotelManagementConsole.KitchenOrderSystem.Cook;
 import hotelManagementConsole.KitchenOrderSystem.Chef;
 import hotelManagementConsole.customer.Customer;
 import hotelManagementConsole.manager.*;
@@ -91,14 +91,14 @@ public class App {
             int quantity8 = sc.nextInt();
             c1.DeleteOrder(foodname8, quantity8);
                         
-            Worker worker1 = new Worker(1, "banu", "banu111", "banu111");
+            Cook worker1 = new Cook(1, "banu", "banu111", "banu111");
             m1.addWorkerToDb(worker1);
-            Worker worker2 = new Worker(2, "arul", "arul111", "arul111");
+            Cook worker2 = new Cook(2, "arul", "arul111", "arul111");
             m1.addWorkerToDb(worker2);
             System.out.println("enter order id to process");
             sc.nextLine();
             String orderid = sc.nextLine();
-            k1.assignFoodToWorkerAndReceiveFood(orderid);
+            k1.assignFoodToCookAndReceiveFood(orderid);
             k1.sendFoodToWaiter(orderid);
             
             // System.out.println("enter food name");
@@ -147,7 +147,7 @@ public class App {
             System.out.println("enter order id to process");
             sc.nextLine();
             String orderid2 = sc.nextLine();
-            k1.assignFoodToWorkerAndReceiveFood(orderid2);
+            k1.assignFoodToCookAndReceiveFood(orderid2);
             k1.sendFoodToWaiter(orderid2);
             c2.askbill();
             c2.ReadBill();

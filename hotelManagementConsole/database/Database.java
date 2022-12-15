@@ -3,7 +3,7 @@ package hotelManagementConsole.database;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import hotelManagementConsole.KitchenOrderSystem.Worker;
+import hotelManagementConsole.KitchenOrderSystem.Cook;
 import hotelManagementConsole.KitchenOrderSystem.Chef;
 import hotelManagementConsole.customer.Customer;
 import hotelManagementConsole.waiter.Waiter;
@@ -12,7 +12,7 @@ public class Database {
 
     private ArrayList<Waiter> waiters = new ArrayList<>();
     private ArrayList<Customer> customers = new ArrayList<>();
-    private ArrayList<Worker> worker = new ArrayList<>();
+    private ArrayList<Cook> worker = new ArrayList<>();
 
     private Database() {
 
@@ -76,9 +76,9 @@ public class Database {
         }
     }
 
-    public void addWorkerToDb(Worker worker) {
+    public void addWorkerToDb(Cook worker) {
         this.worker.add(worker);
-        Chef.getinsttanceChef().addWorkersToChef(worker);
+        Chef.getinsttanceChef().addCookToChef(worker);
     }
 
 }

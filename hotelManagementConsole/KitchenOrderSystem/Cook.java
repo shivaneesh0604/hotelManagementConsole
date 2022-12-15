@@ -5,11 +5,11 @@ import java.util.HashMap;
 import hotelManagementConsole.Person;
 import hotelManagementConsole.Orders.NewOrder;
 
-public class Worker extends Person {
+public class Cook extends Person {
 
     private HashMap<Chef, NewOrder> orders = new HashMap<>();
 
-    public Worker(int id, String name, String Username, String Password) {
+    public Cook(int id, String name, String Username, String Password) {
         super(id, name);
     }
 
