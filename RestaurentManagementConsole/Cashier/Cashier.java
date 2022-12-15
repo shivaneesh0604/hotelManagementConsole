@@ -33,6 +33,8 @@ public class Cashier extends Person {
         if (bills.get(orderid).getTotalAmount() == paymentAmount) {
             System.out.println("payment done");
         }
+        else{
+            System.out.println("payable amount is less than "+bills.get(orderid).getTotalAmount()+" so enter amount equal to "+bills.get(orderid).getTotalAmount());
+        }
     }
-
 }
