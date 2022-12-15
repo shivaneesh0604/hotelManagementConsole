@@ -18,7 +18,7 @@ import RestaurentManagementConsole.menu.UserMenu;
 public class Waiter extends Person {
 
     private UserMenu menu;
-    private final HashMap<Customer, Orders> orders;
+    private final HashMap<Integer, Orders> orders;
     private final HashMap<String, Customer> customerfinding;// for returning the food
     private final ArrayList<String> Tablenumbers;
     private KitchenSystem kitchenSystem;
@@ -34,18 +34,18 @@ public class Waiter extends Person {
         cashier = Cashier.getinstance();
     }
 
-    public void assignCustomer(Customer customer) {
+    public void assignCustomer(int customerid) {
         Orders order = new Orders();
-        this.orders.put(customer, order);
+        this.orders.put(customerid, order);
     }
 
     public void assignCashier(Cashier cashier) {
         this.cashier = cashier;
     }
 
-    public void TakeNewOrder(Customer customer, String foodName, int quantity) {
+    public void TakeNewOrder(int customerid, String foodName, int quantity) {
 
-        Orders orders1 = orders.get(customer);
+        Orders orders1 = orders.get(customerid);
         boolean foodExists = false;
         foodExists = menu.checkFoodAvailability(foodName);
         if (foodExists == false) {
@@ -57,7 +57,7 @@ public class Waiter extends Person {
     }
 
     public void processOrder(Customer customer) {
-        Orders o1 = orders.get(customer);
+        Orders o1 = orders.get(customer.getId());
 
         if (o1.getOrders().size()==0) {
             throw new RuntimeException();
@@ -85,14 +85,14 @@ public class Waiter extends Person {
         customer.receiveOrder(order);
     }
 
-    public void DeleteOrder(Customer customer, String foodName, int quantity) {
+    public void DeleteOrder(int customerid, String foodName, int quantity) {
         boolean foodExists = false;
         foodExists = menu.checkFoodAvailability(foodName);
         if (foodExists == false) {
             System.out.println("Enter the right foodname to delete order since this food in not available in menu");
             return;
         }
-        Orders o = orders.get(customer);
+        Orders o = orders.get(customerid);
         boolean foodCheckinOrders=false;
         for (NewOrder orders : o.getOrders()) {
             if(orders.getFoodname().equals(foodName)){
@@ -121,13 +121,13 @@ public class Waiter extends Person {
         }
     }
 
-    public Bill askbill(Customer customer) {
-        Orders order = this.orders.get(customer);
+    public Bill askbill(int customerid) {
+        Orders order = this.orders.get(customerid);
         return cashier.generateBill(order.getOrders(),order.getOrderId());
     }
 
-    public void paybill(float paymentAmount,Customer customer){
-        cashier.paybill(paymentAmount,orders.get(customer).getOrderId());
+    public void paybill(float paymentAmount,int customerid){
+        cashier.paybill(paymentAmount,orders.get(customerid).getOrderId());
     }
 
     public Menu providesMenu() {

@@ -34,7 +34,7 @@ public class Customer extends Person {
     }
 
     public void addOrders(String foodname, int Quantity) {
-        waiter.TakeNewOrder(this, foodname, Quantity);
+        waiter.TakeNewOrder(this.getId(), foodname, Quantity);
     }
 
     public void confirmOrder() {
@@ -47,7 +47,7 @@ public class Customer extends Person {
 
     public void DeleteOrder(String foodName, int quantity) {
         try {
-            waiter.DeleteOrder(this, foodName, quantity);
+            waiter.DeleteOrder(this.getId(), foodName, quantity);
         } catch (RuntimeException e) {
             System.out.println("cant delete this order since this food is not available in orders");
         }
@@ -61,7 +61,7 @@ public class Customer extends Person {
     }
 
     public void askbill() {
-        bill = waiter.askbill(this);
+        bill = waiter.askbill(this.getId());
     }
     
     public void ReadBill(){
@@ -74,7 +74,7 @@ public class Customer extends Person {
     }
 
     public void paybill(float paymentAmount){
-        waiter.paybill(paymentAmount,this);
+        waiter.paybill(paymentAmount,this.getId());
     }
     public Waiter getWaiter() {
         return waiter;

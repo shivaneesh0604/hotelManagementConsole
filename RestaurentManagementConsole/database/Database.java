@@ -71,7 +71,7 @@ public class Database {
         for (Waiter waiter : waiters) {
             if (waiter.getTablenumbers().contains(customer.getTablenumber())) {
                 customer.setWaiter(waiter);
-                waiter.assignCustomer(customer);
+                waiter.assignCustomer(customer.getId());
             }
         }
     }
