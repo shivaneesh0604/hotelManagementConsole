@@ -71,8 +71,7 @@ public class Waiter extends Person {
                         + "is delivered so shoulnt send that to kitchen order manager");
                 continue;
             }
-            System.out.println(order.getFoodname() + "here");
-            if (!order.isDelivered()) {
+            else if (!order.isDelivered()) {
                 kitchenSystem.storeOrder(customer.getOrderID(), order, this);
             }
         }
@@ -81,9 +80,9 @@ public class Waiter extends Person {
         }
     }
 
-    public void ReceiveOrder(String orderID, Orders order) {
+    public void ReceiveOrder(String orderID, ArrayList<NewOrder> order) {
         Customer customer = customerfinding.get(orderID);
-        customer.receiveOrder(order.getOrders());
+        customer.receiveOrder(order);
     }
 
     public void DeleteOrder(Customer customer, String foodName, int quantity) {
