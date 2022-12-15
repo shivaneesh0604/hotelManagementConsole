@@ -7,8 +7,8 @@ import java.util.List;
 import hotelManagementConsole.Person;
 import hotelManagementConsole.Cashier.Bill;
 import hotelManagementConsole.Cashier.Cashier;
-import hotelManagementConsole.KitchenOrderSystem.OrderHook;
-import hotelManagementConsole.KitchenOrderSystem.KitchenOrderSystem;
+import hotelManagementConsole.KitchenOrderSystem.KitchenSystem;
+import hotelManagementConsole.KitchenOrderSystem.Chef;
 import hotelManagementConsole.Orders.NewOrder;
 import hotelManagementConsole.Orders.Orders;
 import hotelManagementConsole.customer.Customer;
@@ -21,7 +21,7 @@ public class Waiter extends Person {
     private final HashMap<Customer, Orders> orders;
     private final HashMap<String, Customer> customerfinding;// for returning the food
     private final ArrayList<String> Tablenumbers;
-    private OrderHook orderHook;
+    private KitchenSystem kitchenSystem;
     private Cashier cashier;
 
     public Waiter(int waiter_id, String name) {
@@ -29,7 +29,7 @@ public class Waiter extends Person {
         Tablenumbers = new ArrayList<>();
         orders = new HashMap<>();
         customerfinding = new HashMap<>();
-        orderHook = KitchenOrderSystem.getinsttanceKitchenOrderManager();
+        kitchenSystem = Chef.getinsttanceChef();
         menu = Menu.getinstance();
         cashier = Cashier.getinstance();
     }
@@ -73,7 +73,7 @@ public class Waiter extends Person {
             }
             System.out.println(order.getFoodname() + "here");
             if (!order.isDelivered()) {
-                orderHook.storeOrder(customer.getOrderID(), order, this);
+                kitchenSystem.storeOrder(customer.getOrderID(), order, this);
             }
         }
         if (customerfinding.get(customer.getOrderID()) == null) {
@@ -125,6 +125,10 @@ public class Waiter extends Person {
     public Bill askbill(Customer customer) {
         Orders order = this.orders.get(customer);
         return cashier.generateBill(order.getOrders(),order.getOrderId());
+    }
+
+    public void paybill(float paymentAmount,Customer customer){
+        cashier.paybill(paymentAmount,orders.get(customer).getOrderId());
     }
 
     public Menu providesMenu() {

@@ -15,7 +15,7 @@ public class Customer extends Person {
     private String tablenumber;
     private String orderID;  
     private Bill bill;
-    private int BillTotalAmount;
+    private float BillTotalAmount;
 
     public Customer(int id, String name) {
         super(id, name);
@@ -68,12 +68,14 @@ public class Customer extends Person {
         try {
             BillTotalAmount = bill.ReadBill();
         } catch (NullPointerException e) {
-            // TODO: handle exception
             System.out.println("Ask The Bill first");
         }
         System.out.println("payable amount is "+BillTotalAmount);
     }
 
+    public void paybill(float paymentAmount){
+        waiter.paybill(paymentAmount,this);
+    }
     public Waiter getWaiter() {
         return waiter;
     }

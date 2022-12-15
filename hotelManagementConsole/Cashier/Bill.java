@@ -10,15 +10,15 @@ import hotelManagementConsole.menu.UserMenu;
 public class Bill {
 
     private final UserMenu menu;
-    private ArrayList<NewOrder> order;
-    private int totalAmount;
+    private final ArrayList<NewOrder> order;
+    private float totalAmount;
 
     public Bill(ArrayList<NewOrder> order) {
         this.order = order;
         menu = Menu.getinstance();
     }
 
-    public int ReadBill() {
+    public float ReadBill() {
         System.out.format(
                 "-----------------------------------------------------------------------------------------------------------------------------------");
         System.out.print("\nProductName\t\tQuantity\t\tRate \t\t\tTotal Price\n");
@@ -39,6 +39,10 @@ public class Bill {
         }
         System.out.println("total price is "+totalPrice);
         totalAmount = totalPrice;
+        return totalAmount; 
+    }
+
+    public float getTotalAmount() {
         return totalAmount;
     }
 

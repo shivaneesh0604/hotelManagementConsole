@@ -3,7 +3,7 @@ package hotelManagementConsole;
 import java.util.Scanner;
 
 import hotelManagementConsole.KitchenOrderSystem.Worker;
-import hotelManagementConsole.KitchenOrderSystem.KitchenOrderSystem;
+import hotelManagementConsole.KitchenOrderSystem.Chef;
 import hotelManagementConsole.customer.Customer;
 import hotelManagementConsole.manager.*;
 import hotelManagementConsole.waiter.Waiter;
@@ -14,7 +14,7 @@ public class App {
 
         Manager m1 = new Manager(1, "ram");
 
-        KitchenOrderSystem k1 = KitchenOrderSystem.getinsttanceKitchenOrderManager();
+        Chef k1 = Chef.getinsttanceChef();
         System.out.println("------------");
         
         Waiter w1 = new Waiter(1, "raj");
@@ -98,7 +98,7 @@ public class App {
             System.out.println("enter order id to process");
             sc.nextLine();
             String orderid = sc.nextLine();
-            k1.assignFoodToChefAndReceiveFood(orderid);
+            k1.assignFoodToWorkerAndReceiveFood(orderid);
             k1.sendFoodToWaiter(orderid);
             
             // System.out.println("enter food name");
@@ -123,9 +123,13 @@ public class App {
 
             c1.askbill();
             c1.ReadBill();
+            System.out.println("enter the amount to be paid");
+            float amounttobepaid = sc.nextFloat();
+            c1.paybill(amounttobepaid);
             Customer c2 = new Customer(2, "harsha");
             System.out.println("available places are t1-t6");
             System.out.println("please enter which place you are going to sit");
+            sc.nextLine();
             String tablenumber2 = sc.nextLine();
             c2.setTablenumber(tablenumber2);
             m1.addCustomerToDB(c2);
@@ -143,11 +147,13 @@ public class App {
             System.out.println("enter order id to process");
             sc.nextLine();
             String orderid2 = sc.nextLine();
-            k1.assignFoodToChefAndReceiveFood(orderid2);
+            k1.assignFoodToWorkerAndReceiveFood(orderid2);
             k1.sendFoodToWaiter(orderid2);
             c2.askbill();
             c2.ReadBill();
-            
+            System.out.println("enter the amount to be paid");
+            float amounttobepaid1 = sc.nextFloat();
+            c1.paybill(amounttobepaid1);
             break;
         }
 

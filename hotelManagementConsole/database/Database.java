@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import hotelManagementConsole.KitchenOrderSystem.Worker;
-import hotelManagementConsole.KitchenOrderSystem.KitchenOrderSystem;
+import hotelManagementConsole.KitchenOrderSystem.Chef;
 import hotelManagementConsole.customer.Customer;
 import hotelManagementConsole.waiter.Waiter;
 
@@ -78,7 +78,7 @@ public class Database {
 
     public void addWorkerToDb(Worker worker) {
         this.worker.add(worker);
-        KitchenOrderSystem.getinsttanceKitchenOrderManager().addWorkersToKitchenOrderSystem(worker);
+        Chef.getinsttanceChef().addWorkersToChef(worker);
     }
 
 }

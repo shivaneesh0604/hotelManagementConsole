@@ -31,7 +31,9 @@ public class Orders {
         Iterator<NewOrder> it = orders.iterator();
         while (it.hasNext()) {
             NewOrder order = it.next();
-            if (order.getFoodname().equals(foodname) && !order.isDelivered()) {
+            System.out.println(order.getQuantity());
+            System.out.println(quantity);
+            if (order.getFoodname().equals(foodname) && order.getQuantity()>=quantity && !order.isDelivered()) {
                 if (order.getQuantity() == quantity) {
                     System.out.println(order.getFoodname()+" is totally deleted");
                     it.remove();
