@@ -4,26 +4,27 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+import hotelManagementConsole.Person;
 import hotelManagementConsole.Orders.NewOrder;
 import hotelManagementConsole.Orders.Orders;
 import hotelManagementConsole.waiter.Waiter;
 
-public class Chef implements KitchenSystem {
+public class Chef extends Person implements KitchenSystem  {
 
     private ArrayList<Worker> worker = new ArrayList<>();
     private HashMap<String, Orders> ordersFromWaiter = new HashMap<>();
     private HashMap<String, Waiter> waiterAck = new HashMap<>();
     private HashMap<String, Orders> PreparedordersFromWorker = new HashMap<>();
 
-    private Chef() {
-
+    private Chef(int id,String name) {
+        super(id, name);
     }
 
     private static Chef chef = null;
 
     public static Chef getinsttanceChef() {
         if (chef == null) {
-            chef = new Chef();
+            chef = new Chef(1,"raghu");
         }
         return chef;
     }
