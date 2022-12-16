@@ -72,7 +72,7 @@ public class App {
             int quantity = sc.nextInt();
             c1.addOrders(foodname, quantity);
             c1.confirmOrder();
-            System.out.println("order id for "+c1.getName()+" is " + c1.getOrderID() + "-> waiter name is " + c1.getWaiter().getName());
+            System.out.println(c1.getName()+" has -> waiter name " + c1.getWaiter().getName());
 
             System.out.println("enter food name ");
             sc.nextLine();
@@ -120,7 +120,6 @@ public class App {
             // k1.sendFoodToWaiter(orderid1);
 
             c1.askbill();
-            c1.ReadBill();
             System.out.println("enter the amount to be paid");
             float amounttobepaid = sc.nextFloat();
             c1.paybill(amounttobepaid);
@@ -139,7 +138,7 @@ public class App {
             int quantityy = sc.nextInt();
             c2.addOrders(foodnamee, quantityy);
             c2.confirmOrder();
-            System.out.println("order id for "+c2.getName()+" is " + c2.getOrderID() + "-> waiter name is " + c2.getWaiter().getName());
+            System.out.println(c2.getName()+" has -> waiter name is " + c2.getWaiter().getName());
 
             System.out.println("enter order id to process");
             sc.nextLine();
@@ -147,7 +146,6 @@ public class App {
             k1.assignFoodToCookAndReceiveFood(orderid2);
             k1.sendFoodToWaiter(orderid2);
             c2.askbill();
-            c2.ReadBill();
             System.out.println("enter the amount to be paid");
             float amounttobepaid1 = sc.nextFloat();
             c1.paybill(amounttobepaid1);

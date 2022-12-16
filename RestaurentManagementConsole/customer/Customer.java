@@ -12,7 +12,6 @@ public class Customer extends Person {
 
     private Waiter waiter;
     private String tablenumber;
-    private String orderID;
     private Bill bill;
     private ArrayList<NewOrder> ordersReceived;
 
@@ -25,13 +24,6 @@ public class Customer extends Person {
         UserMenu menu = waiter.providesMenu();
         menu.showMenu();
     }
-
-    // public void readMenu() {
-    //     try {
-    //     } catch (NullPointerException e) {
-    //         System.out.println("please first read the menu");
-    //     }
-    // }
 
     public void addOrders(String foodname, int Quantity) {
         waiter.TakeNewOrder(this.getId(), foodname, Quantity);
@@ -62,9 +54,6 @@ public class Customer extends Person {
 
     public void askbill() {
         bill = waiter.askbill(this.getId());
-    }
-
-    public void ReadBill() {
         System.out.println("payable amount is " + bill.ReadBill());
     }
 
@@ -86,14 +75,6 @@ public class Customer extends Person {
 
     public void setTablenumber(String tablenumber) {
         this.tablenumber = tablenumber;
-    }
-
-    public String getOrderID() {
-        return orderID;
-    }
-
-    public void setOrderID(String orderID) {
-        this.orderID = orderID;
     }
 
 }

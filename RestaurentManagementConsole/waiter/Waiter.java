@@ -63,7 +63,7 @@ public class Waiter extends Person {
             throw new RuntimeException();
         }
         if (o1.getOrderId() == null) {
-            customer.setOrderID(o1.setOrderId(customer.getId(), customer.getName()));
+            o1.setOrderId(customer.getId(), customer.getName());
         }
         for (NewOrder order : o1.getOrders()) {
             if (order.isDelivered()) {
@@ -72,11 +72,11 @@ public class Waiter extends Person {
                 continue;
             }
             else if (!order.isDelivered()) {
-                kitchenSystem.storeOrder(customer.getOrderID(), order, this);
+                kitchenSystem.storeOrder(o1.getOrderId(), order, this);
             }
         }
-        if (customerfinding.get(customer.getOrderID()) == null) {
-            this.customerfinding.put(customer.getOrderID(), customer);
+        if (customerfinding.get(o1.getOrderId()) == null) {
+            this.customerfinding.put(o1.getOrderId(), customer);
         }
     }
 
