@@ -2,13 +2,14 @@ package RestaurentManagementConsole.database;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import RestaurentManagementConsole.KitchenOrderSystem.Chef;
 import RestaurentManagementConsole.KitchenOrderSystem.Cook;
 import RestaurentManagementConsole.customer.Customer;
 import RestaurentManagementConsole.waiter.Waiter;
 
-public class Database {
+public class Database implements CustomerDatabase,WaiterDatabase,WorkerDatabase{
 
     private ArrayList<Waiter> waiters = new ArrayList<>();
     private ArrayList<Customer> customers = new ArrayList<>();
@@ -26,12 +27,18 @@ public class Database {
         }
         return DB;
     }
-
-    public void addWaitersToDB(Waiter waiter) {
-        waiters.add(waiter);
-
+    
+    public List<String> returnTableNumbers(int waiterid){
+        for (Waiter waiter1 : waiters) {
+            if(waiterid == waiter1.getId()){
+                return waiter1.getTablenumbers();
+            }
+        }
+        return null;
     }
-
+    
+    
+    @Override
     public void addTableNumbersToWaiters(String tablenumber, Waiter waiter) {
         boolean Tablecheck = false;
         for (Waiter waiter1 : waiters) {
@@ -50,9 +57,11 @@ public class Database {
             }
         }
     }
-
-    public void deleteTableNumberToWaiter(String tablenumber, Waiter waiter) {
-
+    
+    
+    @Override
+    public void deleteTableNumberforWaiter(String tablenumber, Waiter waiter) {
+        
         for (Waiter waiter1 : waiters) {
             if (waiter1.getId() == waiter.getId()) {
                 Iterator<String> itr = waiter.getTablenumbers().iterator();
@@ -65,7 +74,9 @@ public class Database {
             }
         }
     }
-
+    
+    
+    @Override
     public void addCustomerToDB(Customer customer) {
         customers.add(customer);
         for (Waiter waiter : waiters) {
@@ -75,10 +86,18 @@ public class Database {
             }
         }
     }
-
+    
+    
+    @Override
     public void addWorkerToDb(Cook worker) {
         this.worker.add(worker);
         Chef.getinsttanceChef().addCookToChef(worker);
     }
-
+    
+    
+    @Override
+    public void addWaitersToDatabase(Waiter waiter) {
+        waiters.add(waiter);
+    }
+    
 }

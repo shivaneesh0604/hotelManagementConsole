@@ -22,8 +22,6 @@ public class Waiter {
     private final HashMap<Integer, Orders> orders;
     private final HashMap<String, Customer> customerfinding;// for returning the food
     private final ArrayList<String> Tablenumbers;
-    private KitchenSystem kitchenSystem;
-    private Cashier cashier;
 
     public Waiter(int waiter_id, String name) {
         this.id = waiter_id;
@@ -31,18 +29,12 @@ public class Waiter {
         Tablenumbers = new ArrayList<>();
         orders = new HashMap<>();
         customerfinding = new HashMap<>();
-        kitchenSystem = Chef.getinsttanceChef();
         menu = Menu.getinstance();
-        cashier = Cashier.getinstance();
     }
 
     public void assignCustomer(int customerid) {
         Orders order = new Orders();
         this.orders.put(customerid, order);
-    }
-
-    public void assignCashier(Cashier cashier) {
-        this.cashier = cashier;
     }
 
     public void TakeNewOrder(int customerid, String foodName, int quantity) {
@@ -74,7 +66,8 @@ public class Waiter {
                 continue;
             }
             else if (!order.isDelivered()) {
-                kitchenSystem.storeOrder(o1.getOrderId(), order, this);
+                KitchenSystem kitchensystem = Chef.getinsttanceChef();
+                kitchensystem.storeOrder(o1.getOrderId(), order, this);
             }
         }
         if (customerfinding.get(o1.getOrderId()) == null) {
@@ -125,11 +118,12 @@ public class Waiter {
 
     public Bill askbill(int customerid) {
         Orders order = this.orders.get(customerid);
+        Cashier cashier = Cashier.getinstance();
         return cashier.generateBill(order.getOrders(),order.getOrderId());
     }
 
     public void paybill(float paymentAmount,int customerid){
-        cashier.paybill(paymentAmount,orders.get(customerid).getOrderId());
+        Cashier.getinstance().paybill(paymentAmount,orders.get(customerid).getOrderId());
     }
 
     public UserMenu providesMenu() {

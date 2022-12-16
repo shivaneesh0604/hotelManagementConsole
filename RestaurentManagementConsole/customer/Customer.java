@@ -14,12 +14,10 @@ public class Customer {
     private Waiter waiter;
     private String tablenumber;
     private Bill bill;
-    private ArrayList<NewOrder> ordersReceived;
 
     public Customer(int id, String name) {
         this.id = id;
         this.name = name;
-        ordersReceived = new ArrayList<>();
     }
 
     public void askMenu() {
@@ -49,7 +47,6 @@ public class Customer {
 
     public void receiveOrder(ArrayList<NewOrder> order) {
         for (NewOrder orders : order) {
-            this.ordersReceived.add(orders);
             System.out.println("Foodname received is " + orders.getFoodname() + " quantity is " + orders.getQuantity());
         }
     }
