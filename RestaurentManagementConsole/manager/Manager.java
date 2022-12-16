@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-import RestaurentManagementConsole.Person;
 import RestaurentManagementConsole.KitchenOrderSystem.Cook;
 import RestaurentManagementConsole.customer.Customer;
 import RestaurentManagementConsole.database.CustomerDatabase;
@@ -15,9 +14,10 @@ import RestaurentManagementConsole.menu.Item;
 import RestaurentManagementConsole.menu.Menu;
 import RestaurentManagementConsole.waiter.Waiter;
 
-public class Manager extends Person {
-    Scanner sc = new Scanner(System.in);
+public class Manager {
 
+    private final int id;
+    private final String name;
     private WaiterDatabase waiterDatabase;
     private CustomerDatabase customerDatabase;
     private WorkerDatabase workerDatabase;
@@ -26,7 +26,8 @@ public class Manager extends Person {
     private static final List<String> tableAvailable = Arrays.asList("t1", "t2", "t3", "t4", "t5", "t6");
 
     public Manager(int manager_id, String name) {
-        super(manager_id, name);
+        this.id = manager_id;
+        this.name = name;
         waiterDatabase = new DatabaseSystem();
         customerDatabase = new DatabaseSystem();
         workerDatabase = new DatabaseSystem();
@@ -75,6 +76,14 @@ public class Manager extends Person {
     
     public static List<String> getTableAvailable() {
         return tableAvailable;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
 }

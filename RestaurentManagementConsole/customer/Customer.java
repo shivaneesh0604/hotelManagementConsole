@@ -2,21 +2,23 @@ package RestaurentManagementConsole.customer;
 
 import java.util.ArrayList;
 
-import RestaurentManagementConsole.Person;
 import RestaurentManagementConsole.Cashier.Bill;
 import RestaurentManagementConsole.Orders.NewOrder;
 import RestaurentManagementConsole.menu.UserMenu;
 import RestaurentManagementConsole.waiter.Waiter;
 
-public class Customer extends Person {
+public class Customer {
 
+    private final int id;
+    private final String name;
     private Waiter waiter;
     private String tablenumber;
     private Bill bill;
     private ArrayList<NewOrder> ordersReceived;
 
     public Customer(int id, String name) {
-        super(id, name);
+        this.id = id;
+        this.name = name;
         ordersReceived = new ArrayList<>();
     }
 
@@ -76,5 +78,13 @@ public class Customer extends Person {
     public void setTablenumber(String tablenumber) {
         this.tablenumber = tablenumber;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    } 
 
 }

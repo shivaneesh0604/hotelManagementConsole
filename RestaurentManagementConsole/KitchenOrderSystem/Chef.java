@@ -4,26 +4,28 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-import RestaurentManagementConsole.Person;
 import RestaurentManagementConsole.Orders.NewOrder;
 import RestaurentManagementConsole.waiter.Waiter;
 
-public class Chef extends Person implements KitchenSystem  {
+public class Chef implements KitchenSystem {
 
+    private final int id;
+    private final String name;
     private ArrayList<Cook> cook = new ArrayList<>();
     private HashMap<String, ArrayList<NewOrder>> ordersFromWaiter = new HashMap<>();
     private HashMap<String, Waiter> waiterAck = new HashMap<>();
     private HashMap<String, ArrayList<NewOrder>> PreparedordersFromCook = new HashMap<>();
 
-    private Chef(int id,String name) {
-        super(id, name);
+    private Chef(int id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     private static Chef chef = null;
 
     public static Chef getinsttanceChef() {
         if (chef == null) {
-            chef = new Chef(1,"raghu");
+            chef = new Chef(1, "raghu");
         }
         return chef;
     }
@@ -34,7 +36,7 @@ public class Chef extends Person implements KitchenSystem  {
 
     @Override
     public void storeOrder(String OrderID, NewOrder order, Waiter waiter) {
-        
+
         if (ordersFromWaiter.containsKey(OrderID)) {
             ArrayList<NewOrder> order1 = ordersFromWaiter.get(OrderID);
             boolean check = false;
@@ -52,12 +54,12 @@ public class Chef extends Person implements KitchenSystem  {
 
         } else {
             System.out.println("hi");
-            ordersFromWaiter.put(OrderID,new ArrayList<NewOrder>());
+            ordersFromWaiter.put(OrderID, new ArrayList<NewOrder>());
             ArrayList<NewOrder> order3 = ordersFromWaiter.get(OrderID);
             order3.add(order);
         }
         if (!waiterAck.containsKey(OrderID)) {
-            
+
             waiterAck.put(OrderID, waiter);
         }
     }
@@ -93,6 +95,15 @@ public class Chef extends Person implements KitchenSystem  {
         Waiter waiterans = waiterAck.get(orderID);
         waiterans.ReceiveOrder(orderID, PreparedordersFromCook.get(orderID));
         ordersFromWaiter.remove(orderID);
-        PreparedordersFromCook.remove(orderID);   
+        PreparedordersFromCook.remove(orderID);
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
 }

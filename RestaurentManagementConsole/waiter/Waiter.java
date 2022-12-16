@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import RestaurentManagementConsole.Person;
 import RestaurentManagementConsole.Cashier.Bill;
 import RestaurentManagementConsole.Cashier.Cashier;
 import RestaurentManagementConsole.KitchenOrderSystem.Chef;
@@ -15,8 +14,10 @@ import RestaurentManagementConsole.customer.Customer;
 import RestaurentManagementConsole.menu.Menu;
 import RestaurentManagementConsole.menu.UserMenu;
 
-public class Waiter extends Person {
+public class Waiter {
 
+    private final int id;
+    private final String name;
     private UserMenu menu;
     private final HashMap<Integer, Orders> orders;
     private final HashMap<String, Customer> customerfinding;// for returning the food
@@ -25,7 +26,8 @@ public class Waiter extends Person {
     private Cashier cashier;
 
     public Waiter(int waiter_id, String name) {
-        super(waiter_id, name);
+        this.id = waiter_id;
+        this.name = name;
         Tablenumbers = new ArrayList<>();
         orders = new HashMap<>();
         customerfinding = new HashMap<>();
@@ -140,6 +142,14 @@ public class Waiter extends Person {
 
     public void setTableNumber(String tablenumber) {
         this.Tablenumbers.add(tablenumber);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
 }

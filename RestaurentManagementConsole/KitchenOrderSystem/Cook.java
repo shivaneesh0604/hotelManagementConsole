@@ -2,15 +2,17 @@ package RestaurentManagementConsole.KitchenOrderSystem;
 
 import java.util.HashMap;
 
-import RestaurentManagementConsole.Person;
 import RestaurentManagementConsole.Orders.NewOrder;
 
-public class Cook extends Person {
+public class Cook  {
 
+    private final int id;
+    private final String name;
     private HashMap<Chef, NewOrder> orders = new HashMap<>();
 
     public Cook(int id, String name, String Username, String Password) {
-        super(id, name);
+        this.id = id;
+        this.name = name;
     }
 
     public NewOrder getfoodAndProcess(NewOrder order, Chef kitchenOrderManager) {
@@ -23,5 +25,13 @@ public class Cook extends Person {
         System.out.println("food completed");
         System.out.println("foodname is "+order.getFoodname()+"quantity is "+order.getQuantity());
         return orders.get(kitchenOrderManager);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
     }
 }

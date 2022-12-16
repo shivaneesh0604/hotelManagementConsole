@@ -3,15 +3,17 @@ package RestaurentManagementConsole.Cashier;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import RestaurentManagementConsole.Person;
 import RestaurentManagementConsole.Orders.NewOrder;
 
-public class Cashier extends Person {
+public class Cashier {
 
+    private final int id;
+    private final String name;
     private HashMap<String, Bill> bills = new HashMap<>();
 
     private Cashier(int id, String name) {
-        super(id, name);
+        this.id = id;
+        this.name = name;
     }
 
     private static Cashier cashier = null;
@@ -37,4 +39,13 @@ public class Cashier extends Person {
             System.out.println("payable amount is less than "+bills.get(orderid).getTotalAmount()+" so enter amount equal to "+bills.get(orderid).getTotalAmount());
         }
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    } 
+
 }
