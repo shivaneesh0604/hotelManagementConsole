@@ -66,7 +66,6 @@ public class App {
             m1.addCustomerToDB(c1);
 
             c1.askMenu();
-            c1.readMenu();
             System.out.println("enter food name ");
             String foodname = sc.nextLine();
             System.out.println("enter the quantity");
@@ -75,7 +74,6 @@ public class App {
             c1.confirmOrder();
             System.out.println("order id for "+c1.getName()+" is " + c1.getOrderID() + "-> waiter name is " + c1.getWaiter().getName());
 
-            c1.readMenu();
             System.out.println("enter food name ");
             sc.nextLine();
             String foodname7 = sc.nextLine();
@@ -135,7 +133,6 @@ public class App {
             m1.addCustomerToDB(c2);
 
             c2.askMenu();
-            c2.readMenu();
             System.out.println("enter food name ");
             String foodnamee = sc.nextLine();
             System.out.println("enter the quantity");

@@ -130,8 +130,8 @@ public class Waiter extends Person {
         cashier.paybill(paymentAmount,orders.get(customerid).getOrderId());
     }
 
-    public Menu providesMenu() {
-        return Menu.getinstance();
+    public UserMenu providesMenu() {
+        return menu;
     }
 
     public List<String> getTablenumbers() {

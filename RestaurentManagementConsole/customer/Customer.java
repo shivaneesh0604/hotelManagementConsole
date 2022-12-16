@@ -10,12 +10,10 @@ import RestaurentManagementConsole.waiter.Waiter;
 
 public class Customer extends Person {
 
-    private UserMenu menu;
     private Waiter waiter;
     private String tablenumber;
     private String orderID;
     private Bill bill;
-    private float BillTotalAmount;
     private ArrayList<NewOrder> ordersReceived;
 
     public Customer(int id, String name) {
@@ -24,16 +22,16 @@ public class Customer extends Person {
     }
 
     public void askMenu() {
-        menu = waiter.providesMenu();
+        UserMenu menu = waiter.providesMenu();
+        menu.showMenu();
     }
 
-    public void readMenu() {
-        try {
-            menu.showMenu();
-        } catch (NullPointerException e) {
-            System.out.println("please first read the menu");
-        }
-    }
+    // public void readMenu() {
+    //     try {
+    //     } catch (NullPointerException e) {
+    //         System.out.println("please first read the menu");
+    //     }
+    // }
 
     public void addOrders(String foodname, int Quantity) {
         waiter.TakeNewOrder(this.getId(), foodname, Quantity);
@@ -67,12 +65,7 @@ public class Customer extends Person {
     }
 
     public void ReadBill() {
-        try {
-            BillTotalAmount = bill.ReadBill();
-        } catch (NullPointerException e) {
-            System.out.println("Ask The Bill first");
-        }
-        System.out.println("payable amount is " + BillTotalAmount);
+        System.out.println("payable amount is " + bill.ReadBill());
     }
 
     public void paybill(float paymentAmount) {
