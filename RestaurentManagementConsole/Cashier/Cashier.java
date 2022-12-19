@@ -3,7 +3,7 @@ package RestaurentManagementConsole.Cashier;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import RestaurentManagementConsole.Orders.NewOrder;
+import RestaurentManagementConsole.Orders.Order;
 
 public class Cashier {
 
@@ -25,7 +25,7 @@ public class Cashier {
         return cashier;
     }
 
-    public Bill generateBill(ArrayList<NewOrder> order, String orderid) {
+    public Bill generateBill(ArrayList<Order> order, String orderid) {
         Bill bill = new Bill(order,orderid);
         bills.put(orderid, bill);
         return bill;

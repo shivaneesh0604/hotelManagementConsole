@@ -4,22 +4,22 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 
-public class Orders {
+public class OrderList {
 
     private String orderId;
 
-    private ArrayList<NewOrder> orders = new ArrayList<>();
+    private ArrayList<Order> orders = new ArrayList<>();
 
-    public void AddtoOrders(NewOrder order) {
+    public void AddtoOrders(Order order) {
         orders.add(order);
-        for (NewOrder order1 : orders) {
+        for (Order order1 : orders) {
             System.out.println(order1.getFoodname());
             System.out.println(order1.getQuantity());
         }
     }
 
     public boolean CheckAvailability(String foodName) {
-        for (NewOrder order : orders) {
+        for (Order order : orders) {
             if (order.getFoodname().equals(foodName)) {
                 return true;
             }
@@ -28,9 +28,9 @@ public class Orders {
     }
 
     public void deleteOrder(String foodname, int quantity) {
-        Iterator<NewOrder> it = orders.iterator();
+        Iterator<Order> it = orders.iterator();
         while (it.hasNext()) {
-            NewOrder order = it.next();
+            Order order = it.next();
             System.out.println(order.getQuantity());
             System.out.println(quantity);
             if (order.getFoodname().equals(foodname) && order.getQuantity()>=quantity && !order.isDelivered()) {
@@ -54,11 +54,11 @@ public class Orders {
         }
     }
 
-    public ArrayList<NewOrder> getOrders() {
+    public ArrayList<Order> getOrders() {
         return orders;
     }
 
-    public void setDelivered(NewOrder newOrder) {
+    public void setDelivered(Order newOrder) {
         newOrder.setDelivered(true);
     }
 

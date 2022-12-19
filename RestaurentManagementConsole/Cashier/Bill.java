@@ -2,7 +2,7 @@ package RestaurentManagementConsole.Cashier;
 
 import java.util.ArrayList;
 
-import RestaurentManagementConsole.Orders.NewOrder;
+import RestaurentManagementConsole.Orders.Order;
 import RestaurentManagementConsole.menu.Item;
 import RestaurentManagementConsole.menu.Menu;
 import RestaurentManagementConsole.menu.UserMenu;
@@ -10,11 +10,11 @@ import RestaurentManagementConsole.menu.UserMenu;
 public class Bill {
 
     private final UserMenu menu;
-    private final ArrayList<NewOrder> order;
+    private final ArrayList<Order> order;
     private final String orderid;
     private float totalAmount;
 
-    public Bill(ArrayList<NewOrder> order,String orderid) {
+    public Bill(ArrayList<Order> order,String orderid) {
         this.order = order;
         this.orderid = orderid;
         menu = Menu.getinstance();
@@ -30,7 +30,7 @@ public class Bill {
         int totalPrice = 0;
         int price = 0;
         // String Bill = "";
-        for (NewOrder newOrder : order) {
+        for (Order newOrder : order) {
             for (Item item : menu.getMenuList()) {
                 if (item.getFoodName().equals(newOrder.getFoodname())) {
                     price = item.getPrice() * newOrder.getQuantity();
@@ -50,7 +50,7 @@ public class Bill {
         return totalAmount;
     }
 
-    public ArrayList<NewOrder> getOrder() {
+    public ArrayList<Order> getOrder() {
         return order;
     }
 

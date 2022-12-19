@@ -1,8 +1,8 @@
 package RestaurentManagementConsole.KitchenOrderSystem;
 
-import RestaurentManagementConsole.Orders.NewOrder;
+import RestaurentManagementConsole.Orders.Order;
 import RestaurentManagementConsole.waiter.Waiter;
 
 public interface KitchenSystem {
-    public void storeOrder(String orderId,NewOrder order,Waiter waiter);
+    public void storeOrder(String orderId,Order order,Waiter waiter);
 }

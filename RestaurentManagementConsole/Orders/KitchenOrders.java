@@ -1,5 +1,5 @@
 package RestaurentManagementConsole.Orders;
 
 public interface KitchenOrders {
-    public void AddtoOrders(NewOrder order);
+    public void AddtoOrders(Order order);
 }

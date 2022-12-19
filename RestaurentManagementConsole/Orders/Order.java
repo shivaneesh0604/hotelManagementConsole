@@ -1,11 +1,11 @@
 package RestaurentManagementConsole.Orders;
 
-public class NewOrder {
+public class Order {
 
     private final String foodname;
     private int quantity;
     private boolean delivered = false;
-    public NewOrder(String foodname, int quantity) {
+    public Order(String foodname, int quantity) {
         this.foodname = foodname;
         this.quantity = quantity;
     }

@@ -9,6 +9,7 @@ import RestaurentManagementConsole.database.CustomerDatabase;
 import RestaurentManagementConsole.database.Database;
 import RestaurentManagementConsole.database.WaiterDatabase;
 import RestaurentManagementConsole.database.WorkerDatabase;
+import RestaurentManagementConsole.menu.Category;
 import RestaurentManagementConsole.menu.Item;
 import RestaurentManagementConsole.menu.Menu;
 import RestaurentManagementConsole.waiter.Waiter;
@@ -33,9 +34,10 @@ public class Manager {
         menu = Menu.getinstance();
     }
 
-    public void addItems(String foodName, int price, String category) {
-        Item item = new Item(foodName, price, category);
+    public void addItems(String foodName, int price, int category) {
+        Item item = new Item(foodName, price, Category.contains(category));
         menu.addMenusItems(item);
+
     }
 
     public void alterfoodprice(String foodname, int price) {

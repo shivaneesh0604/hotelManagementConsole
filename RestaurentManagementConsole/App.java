@@ -40,11 +40,11 @@ public class App {
         String addtablenumber3 = sc.nextLine();
         m1.addTableNumbersToWaiters(w2,addtablenumber3);
 
-        m1.addItems("Rice", 100, "V");
-        m1.addItems("ChickenFriedRice", 200, "NV");
-        m1.addItems("MutttonChucka", 200, "NV");
-        m1.addItems("ChickenChucka", 120, "NV");
-        m1.addItems("Parrota", 15, "V");
+        m1.addItems("Rice", 100,1);
+        m1.addItems("ChickenFriedRice", 200,2);
+        m1.addItems("MutttonChucka", 200,2);
+        m1.addItems("ChickenChucka", 120,2);
+        m1.addItems("Parrota", 15,2 );
 
         m1.alterfoodprice("Rice", 90);
         m1.deleteFoodInMenu("ChickenChucka");
