@@ -4,6 +4,6 @@ import RestaurentManagementConsole.KitchenOrderSystem.Cook;
 
 public interface WorkerDatabase {
 
-    public void addWorkerToDb(Cook worker);
+    public void addWorkerToRestaurent(Cook worker);
 
 }

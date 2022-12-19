@@ -14,7 +14,7 @@ public class App {
 
         Manager m1 = new Manager(1, "ram");
 
-        Chef k1 = Chef.getinsttanceChef();
+        Chef k1 = Chef.getInstanceChef();
         System.out.println("------------");
         
         Waiter w1 = new Waiter(1, "raj");
@@ -119,10 +119,10 @@ public class App {
             // k1.assignFoodToChefAndReceiveFood(orderid1);
             // k1.sendFoodToWaiter(orderid1);
 
-            c1.askbill();
+            c1.askBill();
             System.out.println("enter the amount to be paid");
             float amounttobepaid = sc.nextFloat();
-            c1.paybill(amounttobepaid);
+            c1.payBill(amounttobepaid);
             Customer c2 = new Customer(2, "harsha");
             System.out.println("available places are t1-t6");
             System.out.println("please enter which place you are going to sit");
@@ -145,10 +145,10 @@ public class App {
             String orderid2 = sc.nextLine();
             k1.assignFoodToCookAndReceiveFood(orderid2);
             k1.sendFoodToWaiter(orderid2);
-            c2.askbill();
+            c2.askBill();
             System.out.println("enter the amount to be paid");
             float amounttobepaid1 = sc.nextFloat();
-            c1.paybill(amounttobepaid1);
+            c1.payBill(amounttobepaid1);
             break;
         }
 

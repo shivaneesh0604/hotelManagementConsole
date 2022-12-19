@@ -4,9 +4,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import RestaurentManagementConsole.KitchenOrderSystem.Cook;
+import RestaurentManagementConsole.Restaurent.MenuRoles;
 import RestaurentManagementConsole.customer.Customer;
 import RestaurentManagementConsole.database.CustomerDatabase;
-import RestaurentManagementConsole.database.Database;
+import RestaurentManagementConsole.database.Restaurent;
 import RestaurentManagementConsole.database.WaiterDatabase;
 import RestaurentManagementConsole.database.WorkerDatabase;
 import RestaurentManagementConsole.menu.Category;
@@ -22,15 +23,17 @@ public class Manager {
     private CustomerDatabase customerDatabase;
     private WorkerDatabase workerDatabase;
     private Menu menu;
+    private final MenuRoles role;
 
     private static final List<String> tableAvailable = Arrays.asList("t1", "t2", "t3", "t4", "t5", "t6");
 
     public Manager(int manager_id, String name) {
         this.id = manager_id;
         this.name = name;
-        waiterDatabase = Database.getinstanceDatabase();
-        customerDatabase = Database.getinstanceDatabase();
-        workerDatabase = Database.getinstanceDatabase();
+        this.role = MenuRoles.MENU_EDITOR;
+        waiterDatabase = Restaurent.getInstanceRestaurent();
+        customerDatabase = Restaurent.getInstanceRestaurent();
+        workerDatabase = Restaurent.getInstanceRestaurent();
         menu = Menu.getinstance();
     }
 
@@ -39,13 +42,13 @@ public class Manager {
         menu.addMenusItems(item);
 
     }
-
+               
     public void alterfoodprice(String foodname, int price) {
         menu.alterMenuItems(foodname, price);
     }
 
     public void deleteFoodInMenu(String foodname) {
-        menu.alterMenuItems(foodname);
+        menu.deleteMenuItems(foodname);
     }
 
     public void addTableNumbersToWaiters(Waiter waiter, String addtablenumber1) {
@@ -62,15 +65,15 @@ public class Manager {
     }
 
     public void AddWaiterToDB(Waiter waiter) {
-        waiterDatabase.addWaitersToDatabase(waiter);
+        waiterDatabase.addWaitersToRestaurent(waiter);
     }
 
     public void addWorkerToDb(Cook worker) {
-        workerDatabase.addWorkerToDb(worker);
+        workerDatabase.addWorkerToRestaurent(worker);
     }
 
     public void addCustomerToDB(Customer customer) {
-        customerDatabase.addCustomerToDB(customer);
+        customerDatabase.addCustomerToRestaurent(customer);
     }
 
     public static List<String> getTableAvailable() {
@@ -83,6 +86,10 @@ public class Manager {
 
     public String getName() {
         return name;
+    }
+
+    public MenuRoles getRole() {
+        return role;
     }
 
 }

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 import RestaurentManagementConsole.Orders.Order;
+import RestaurentManagementConsole.database.Restaurent;
 import RestaurentManagementConsole.waiter.Waiter;
 
 public class Chef implements KitchenSystem {
@@ -13,7 +14,6 @@ public class Chef implements KitchenSystem {
     private final String name;
     private ArrayList<Cook> cook = new ArrayList<>();
     private HashMap<String, ArrayList<Order>> ordersFromWaiter = new HashMap<>();
-    private HashMap<String, Waiter> waiterAck = new HashMap<>();
     private HashMap<String, ArrayList<Order>> PreparedordersFromCook = new HashMap<>();
 
     private Chef(int id, String name) {
@@ -23,7 +23,7 @@ public class Chef implements KitchenSystem {
 
     private static Chef chef = null;
 
-    public static Chef getinsttanceChef() {
+    public static Chef getInstanceChef() {
         if (chef == null) {
             chef = new Chef(1, "raghu");
         }
@@ -53,14 +53,9 @@ public class Chef implements KitchenSystem {
             }
 
         } else {
-            System.out.println("hi");
-            ordersFromWaiter.put(OrderID, new ArrayList<Order>());
+             ordersFromWaiter.put(OrderID, new ArrayList<Order>());
             ArrayList<Order> order3 = ordersFromWaiter.get(OrderID);
             order3.add(order);
-        }
-        if (!waiterAck.containsKey(OrderID)) {
-
-            waiterAck.put(OrderID, waiter);
         }
     }
 
@@ -92,10 +87,8 @@ public class Chef implements KitchenSystem {
     }
 
     public void sendFoodToWaiter(String orderID) {
-        Waiter waiterans = waiterAck.get(orderID);
-        waiterans.ReceiveOrder(orderID, PreparedordersFromCook.get(orderID));
-        ordersFromWaiter.remove(orderID);
-        PreparedordersFromCook.remove(orderID);
+        Waiter waiter = Restaurent.getInstanceRestaurent().returnWaiter(orderID);
+        waiter.ReceiveOrder(orderID, PreparedordersFromCook.get(orderID));
     }
 
     public int getId() {

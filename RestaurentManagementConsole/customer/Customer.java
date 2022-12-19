@@ -51,12 +51,12 @@ public class Customer {
         }
     }
 
-    public void askbill() {
+    public void askBill() {
         bill = waiter.askbill(this.getId());
         System.out.println("payable amount is " + bill.ReadBill());
     }
 
-    public void paybill(float paymentAmount) {
+    public void payBill(float paymentAmount) {
         waiter.paybill(paymentAmount, this.getId());
     }
 

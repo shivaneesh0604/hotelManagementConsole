@@ -19,7 +19,6 @@ public class Menu implements UserMenu {
             menu = new Menu();
         }
         return menu;
-
     }
 
     public void addMenusItems(Item items) {
@@ -44,7 +43,7 @@ public class Menu implements UserMenu {
 
     }
 
-    public void alterMenuItems(String foodname) {
+    public void deleteMenuItems(String foodname) {
         Iterator<Item> it = menuList.iterator();
         while (it.hasNext()) {
             Item item = it.next();

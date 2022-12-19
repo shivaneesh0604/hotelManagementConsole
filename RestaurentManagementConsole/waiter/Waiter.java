@@ -10,7 +10,9 @@ import RestaurentManagementConsole.KitchenOrderSystem.Chef;
 import RestaurentManagementConsole.KitchenOrderSystem.KitchenSystem;
 import RestaurentManagementConsole.Orders.Order;
 import RestaurentManagementConsole.Orders.OrderList;
+import RestaurentManagementConsole.Restaurent.MenuRoles;
 import RestaurentManagementConsole.customer.Customer;
+import RestaurentManagementConsole.database.Restaurent;
 import RestaurentManagementConsole.menu.Menu;
 import RestaurentManagementConsole.menu.UserMenu;
 
@@ -20,15 +22,15 @@ public class Waiter {
     private final String name;
     private UserMenu menu;
     private final HashMap<Integer, OrderList> orders;
-    private final HashMap<String, Customer> customerfinding;// for returning the food
     private final ArrayList<String> Tablenumbers;
+    private final MenuRoles role;
 
     public Waiter(int waiter_id, String name) {
         this.id = waiter_id;
         this.name = name;
+        this.role=MenuRoles.MENU_NONEDITORS;
         Tablenumbers = new ArrayList<>();
         orders = new HashMap<>();
-        customerfinding = new HashMap<>();
         menu = Menu.getinstance();
     }
 
@@ -66,17 +68,14 @@ public class Waiter {
                 continue;
             }
             else if (!order.isDelivered()) {
-                KitchenSystem kitchensystem = Chef.getinsttanceChef();
+                KitchenSystem kitchensystem = Chef.getInstanceChef();
                 kitchensystem.storeOrder(o1.getOrderId(), order, this);
             }
-        }
-        if (customerfinding.get(o1.getOrderId()) == null) {
-            this.customerfinding.put(o1.getOrderId(), customer);
         }
     }
 
     public void ReceiveOrder(String orderID, ArrayList<Order> order) {
-        Customer customer = customerfinding.get(orderID);
+        Customer customer = Restaurent.getInstanceRestaurent().returnCustomer(this.id);
         customer.receiveOrder(order);
     }
 
@@ -98,9 +97,6 @@ public class Waiter {
         if(foodCheckinOrders==false){
             throw new RuntimeException();
         }
-        // if(o.getOrders().contains(foodName)){
-
-        // }
         boolean checkfoodprocessed = false;
         for (Order order : o.getOrders()) {
             if (!order.isDelivered() && order.getFoodname().equals(foodName)) {
@@ -118,12 +114,12 @@ public class Waiter {
 
     public Bill askbill(int customerid) {
         OrderList order = this.orders.get(customerid);
-        Cashier cashier = Cashier.getinstance();
+        Cashier cashier = Cashier.getInstance();
         return cashier.generateBill(order.getOrders(),order.getOrderId());
     }
 
     public void paybill(float paymentAmount,int customerid){
-        Cashier.getinstance().paybill(paymentAmount,orders.get(customerid).getOrderId());
+        Cashier.getInstance().payBill(paymentAmount,orders.get(customerid).getOrderId());
     }
 
     public UserMenu providesMenu() {
@@ -144,6 +140,14 @@ public class Waiter {
 
     public String getName() {
         return name;
+    }
+
+    public HashMap<Integer, OrderList> getOrders() {
+        return orders;
+    }
+
+    public MenuRoles getRole() {
+        return role;
     }
 
 }

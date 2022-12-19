@@ -1,33 +1,36 @@
 package RestaurentManagementConsole.database;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
 import RestaurentManagementConsole.KitchenOrderSystem.Chef;
 import RestaurentManagementConsole.KitchenOrderSystem.Cook;
+import RestaurentManagementConsole.Orders.OrderList;
 import RestaurentManagementConsole.customer.Customer;
 import RestaurentManagementConsole.waiter.Waiter;
 
-public class Database implements CustomerDatabase, WaiterDatabase, WorkerDatabase {
+public class Restaurent implements CustomerDatabase, WaiterDatabase, WorkerDatabase {
 
     private ArrayList<Waiter> waiters = new ArrayList<>();
     private ArrayList<Customer> customers = new ArrayList<>();
     private ArrayList<Cook> worker = new ArrayList<>();
 
-    private Database() {
+    private Restaurent() {
 
     }
 
-    private static Database DB = null;
+    private static Restaurent restaurent = null;
 
-    public static Database getinstanceDatabase() {
-        if (DB == null) {
-            DB = new Database();
+    public static Restaurent getInstanceRestaurent() {
+        if (restaurent == null) {
+            restaurent = new Restaurent();
         }
-        return DB;
+        return restaurent;
     }
 
+    @Override
     public List<String> returnTableNumbers(int waiterid) {
         for (Waiter waiter1 : waiters) {
             if (waiterid == waiter1.getId()) {
@@ -74,7 +77,7 @@ public class Database implements CustomerDatabase, WaiterDatabase, WorkerDatabas
     }
 
     @Override
-    public void addCustomerToDB(Customer customer) {
+    public void addCustomerToRestaurent(Customer customer) {
         customers.add(customer);
         for (Waiter waiter : waiters) {
             if (waiter.getTablenumbers().contains(customer.getTablenumber())) {
@@ -85,14 +88,35 @@ public class Database implements CustomerDatabase, WaiterDatabase, WorkerDatabas
     }
 
     @Override
-    public void addWorkerToDb(Cook worker) {
+    public void addWorkerToRestaurent(Cook worker) {
         this.worker.add(worker);
-        Chef.getinsttanceChef().addCookToChef(worker);
+        Chef.getInstanceChef().addCookToChef(worker);
     }
 
     @Override
-    public void addWaitersToDatabase(Waiter waiter) {
+    public void addWaitersToRestaurent(Waiter waiter) {
         waiters.add(waiter);
+    }
+
+    public Waiter returnWaiter(String orderid) {
+        for (Waiter waiter : waiters) {
+            Collection<OrderList> orders = waiter.getOrders().values();
+            for (OrderList order : orders) {
+                if (order.getOrderId().equals(orderid)) {
+                    return waiter;
+                }
+            }
+        }
+        return null;
+    }
+
+    public Customer returnCustomer(int waiterid) {
+        for (Customer customer : customers) {
+            if (customer.getWaiter().getId() == waiterid) {
+                return customer;
+            }
+        }
+        return null;
     }
 
 }

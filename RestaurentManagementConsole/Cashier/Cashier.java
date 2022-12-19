@@ -18,7 +18,7 @@ public class Cashier {
 
     private static Cashier cashier = null;
 
-    public static Cashier getinstance() {
+    public static Cashier getInstance() {
         if (cashier == null) {
             cashier = new Cashier(1, "karthi");
         }
@@ -31,7 +31,7 @@ public class Cashier {
         return bill;
     }
 
-    public void paybill(float paymentAmount, String orderid) {
+    public void payBill(float paymentAmount, String orderid) {
         if (bills.get(orderid).getTotalAmount() == paymentAmount) {
             System.out.println("payment done");
         }
