@@ -3,7 +3,7 @@ package RestaurentManagementConsole.customer;
 import java.util.ArrayList;
 
 import RestaurentManagementConsole.Cashier.Bill;
-import RestaurentManagementConsole.Orders.NewOrder;
+import RestaurentManagementConsole.Orders.Order;
 import RestaurentManagementConsole.menu.UserMenu;
 import RestaurentManagementConsole.waiter.Waiter;
 
@@ -45,8 +45,8 @@ public class Customer {
         }
     }
 
-    public void receiveOrder(ArrayList<NewOrder> order) {
-        for (NewOrder orders : order) {
+    public void receiveOrder(ArrayList<Order> order) {
+        for (Order orders : order) {
             System.out.println("Foodname received is " + orders.getFoodname() + " quantity is " + orders.getQuantity());
         }
     }
@@ -82,6 +82,6 @@ public class Customer {
 
     public String getName() {
         return name;
-    } 
+    }
 
 }
