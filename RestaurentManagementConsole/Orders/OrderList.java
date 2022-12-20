@@ -18,15 +18,6 @@ public class OrderList {
         }
     }
 
-    public boolean CheckAvailability(String foodName) {
-        for (Order order : orders) {
-            if (order.getFoodname().equals(foodName)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public void deleteOrder(String foodname, int quantity) {
         Iterator<Order> it = orders.iterator();
         while (it.hasNext()) {

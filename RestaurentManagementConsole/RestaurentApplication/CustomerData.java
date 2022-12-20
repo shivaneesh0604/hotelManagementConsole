@@ -1,8 +1,8 @@
-package RestaurentManagementConsole.database;
+package RestaurentManagementConsole.RestaurentApplication;
 
 import RestaurentManagementConsole.customer.Customer;
 
-public interface CustomerDatabase {
+public interface CustomerData {
     
     public void addCustomerToRestaurent(Customer customer);
 

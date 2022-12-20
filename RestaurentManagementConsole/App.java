@@ -22,15 +22,15 @@ public class App {
         System.out.println("enter tablenumber to add");
         String addtablenumber1 = sc.nextLine();
 
-        m1.addTableNumbersToWaiters(w1,addtablenumber1);
+        m1.addTableNumbersToWaiters(w1.getId(),addtablenumber1);
 
         System.out.println("enter tablenumber to add");
         String addtablenumber2 = sc.nextLine();
-        m1.addTableNumbersToWaiters(w1,addtablenumber2);
+        m1.addTableNumbersToWaiters(w1.getId(),addtablenumber2);
         
         System.out.println("enter number to delete");
         String tablenumber1 = sc.nextLine();
-        m1.deleteTableNumberforWaiter(tablenumber1, w1);
+        m1.deleteTableNumberforWaiter(tablenumber1, w1.getId());
         System.out.println(w1.getTablenumbers()); 
 
         Waiter w2 = new Waiter(2, "ram");
@@ -38,7 +38,7 @@ public class App {
 
         System.out.println("enter tablenumber to add");
         String addtablenumber3 = sc.nextLine();
-        m1.addTableNumbersToWaiters(w2,addtablenumber3);
+        m1.addTableNumbersToWaiters(w2.getId(),addtablenumber3);
 
         m1.addItems("Rice", 100,1);
         m1.addItems("ChickenFriedRice", 200,2);

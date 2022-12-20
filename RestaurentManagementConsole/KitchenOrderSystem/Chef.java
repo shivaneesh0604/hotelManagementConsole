@@ -5,7 +5,8 @@ import java.util.HashMap;
 import java.util.Random;
 
 import RestaurentManagementConsole.Orders.Order;
-import RestaurentManagementConsole.database.Restaurent;
+import RestaurentManagementConsole.RestaurentApplication.Restaurent;
+import RestaurentManagementConsole.RestaurentApplication.Serve;
 import RestaurentManagementConsole.waiter.Waiter;
 
 public class Chef implements KitchenSystem {
@@ -15,10 +16,12 @@ public class Chef implements KitchenSystem {
     private ArrayList<Cook> cook = new ArrayList<>();
     private HashMap<String, ArrayList<Order>> ordersFromWaiter = new HashMap<>();
     private HashMap<String, ArrayList<Order>> PreparedordersFromCook = new HashMap<>();
+    private final Serve serves;
 
     private Chef(int id, String name) {
         this.id = id;
         this.name = name;
+        serves = Restaurent.getInstanceRestaurent();
     }
 
     private static Chef chef = null;
@@ -87,8 +90,7 @@ public class Chef implements KitchenSystem {
     }
 
     public void sendFoodToWaiter(String orderID) {
-        Waiter waiter = Restaurent.getInstanceRestaurent().returnWaiter(orderID);
-        waiter.ReceiveOrder(orderID, PreparedordersFromCook.get(orderID));
+        serves.returnWaiter(orderID).ReceiveOrder(orderID, PreparedordersFromCook.get(orderID));
     }
 
     public int getId() {

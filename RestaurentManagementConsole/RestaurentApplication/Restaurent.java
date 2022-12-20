@@ -1,4 +1,4 @@
-package RestaurentManagementConsole.database;
+package RestaurentManagementConsole.RestaurentApplication;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,7 +11,7 @@ import RestaurentManagementConsole.Orders.OrderList;
 import RestaurentManagementConsole.customer.Customer;
 import RestaurentManagementConsole.waiter.Waiter;
 
-public class Restaurent implements CustomerDatabase, WaiterDatabase, WorkerDatabase {
+public class Restaurent implements CustomerData, WaiterData, WorkerData, Serve {
 
     private ArrayList<Waiter> waiters = new ArrayList<>();
     private ArrayList<Customer> customers = new ArrayList<>();
@@ -41,10 +41,10 @@ public class Restaurent implements CustomerDatabase, WaiterDatabase, WorkerDatab
     }
 
     @Override
-    public void addTableNumbersToWaiters(String tablenumber, Waiter waiter) {
+    public void addTableNumbersToWaiters(String tablenumber, int waiterid) {
         boolean Tablecheck = false;
         for (Waiter waiter1 : waiters) {
-            if (waiter1.getId() == waiter.getId()) {
+            if (waiter1.getId() == waiterid) {
                 for (Waiter waiter2 : waiters) {
                     if (waiter2.getTablenumbers().contains(tablenumber)) {
                         Tablecheck = true;
@@ -61,11 +61,11 @@ public class Restaurent implements CustomerDatabase, WaiterDatabase, WorkerDatab
     }
 
     @Override
-    public void deleteTableNumberforWaiter(String tablenumber, Waiter waiter) {
+    public void deleteTableNumberforWaiter(String tablenumber, int waiterid) {
 
         for (Waiter waiter1 : waiters) {
-            if (waiter1.getId() == waiter.getId()) {
-                Iterator<String> itr = waiter.getTablenumbers().iterator();
+            if (waiter1.getId() == waiterid) {
+                Iterator<String> itr = waiter1.getTablenumbers().iterator();
                 while (itr.hasNext()) {
                     String tablenumber1 = itr.next();
                     if (tablenumber1.equals(tablenumber)) {
@@ -98,6 +98,7 @@ public class Restaurent implements CustomerDatabase, WaiterDatabase, WorkerDatab
         waiters.add(waiter);
     }
 
+    @Override
     public Waiter returnWaiter(String orderid) {
         for (Waiter waiter : waiters) {
             Collection<OrderList> orders = waiter.getOrders().values();
@@ -110,6 +111,7 @@ public class Restaurent implements CustomerDatabase, WaiterDatabase, WorkerDatab
         return null;
     }
 
+    @Override
     public Customer returnCustomer(int waiterid) {
         for (Customer customer : customers) {
             if (customer.getWaiter().getId() == waiterid) {

@@ -5,11 +5,11 @@ import java.util.List;
 
 import RestaurentManagementConsole.KitchenOrderSystem.Cook;
 import RestaurentManagementConsole.Restaurent.MenuRoles;
+import RestaurentManagementConsole.RestaurentApplication.CustomerData;
+import RestaurentManagementConsole.RestaurentApplication.Restaurent;
+import RestaurentManagementConsole.RestaurentApplication.WaiterData;
+import RestaurentManagementConsole.RestaurentApplication.WorkerData;
 import RestaurentManagementConsole.customer.Customer;
-import RestaurentManagementConsole.database.CustomerDatabase;
-import RestaurentManagementConsole.database.Restaurent;
-import RestaurentManagementConsole.database.WaiterDatabase;
-import RestaurentManagementConsole.database.WorkerDatabase;
 import RestaurentManagementConsole.menu.Category;
 import RestaurentManagementConsole.menu.Item;
 import RestaurentManagementConsole.menu.Menu;
@@ -19,9 +19,9 @@ public class Manager {
 
     private final int id;
     private final String name;
-    private WaiterDatabase waiterDatabase;
-    private CustomerDatabase customerDatabase;
-    private WorkerDatabase workerDatabase;
+    private WaiterData waiterDatabase;
+    private CustomerData customerDatabase;
+    private WorkerData workerDatabase;
     private Menu menu;
     private final MenuRoles role;
 
@@ -51,17 +51,24 @@ public class Manager {
         menu.deleteMenuItems(foodname);
     }
 
-    public void addTableNumbersToWaiters(Waiter waiter, String addtablenumber1) {
+    public void addTableNumbersToWaiters(int waiterid, String addtablenumber1) {
         if (tableAvailable.contains(addtablenumber1)) {
-            waiterDatabase.addTableNumbersToWaiters(addtablenumber1, waiter);
+            System.out.println(waiterDatabase.returnTableNumbers(waiterid)); 
+            waiterDatabase.addTableNumbersToWaiters(addtablenumber1, waiterid);
         } else {
             System.out.println("please enter available table number");
             System.out.println("Available tablenumbers are " + tableAvailable);
         }
     }
 
-    public void deleteTableNumberforWaiter(String tablenumber, Waiter waiter) {
-        waiterDatabase.deleteTableNumberforWaiter(tablenumber, waiter);
+    public void deleteTableNumberforWaiter(String tablenumber, int waiterid) {
+        if (tableAvailable.contains(tablenumber)) {
+            System.out.println(waiterDatabase.returnTableNumbers(waiterid)); 
+            waiterDatabase.deleteTableNumberforWaiter(tablenumber, waiterid);
+        } else {
+            System.out.println("please enter available table number");
+            System.out.println("Available tablenumbers are " + tableAvailable);
+        }
     }
 
     public void AddWaiterToDB(Waiter waiter) {

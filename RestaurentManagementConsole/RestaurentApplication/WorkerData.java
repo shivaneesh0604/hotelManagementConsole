@@ -1,8 +1,8 @@
-package RestaurentManagementConsole.database;
+package RestaurentManagementConsole.RestaurentApplication;
 
 import RestaurentManagementConsole.KitchenOrderSystem.Cook;
 
-public interface WorkerDatabase {
+public interface WorkerData {
 
     public void addWorkerToRestaurent(Cook worker);
 
