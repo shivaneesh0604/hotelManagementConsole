@@ -5,11 +5,8 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import RestaurentManagementConsole.KitchenOrderSystem.Chef;
-import RestaurentManagementConsole.KitchenOrderSystem.Cook;
 import RestaurentManagementConsole.Orders.OrderList;
 import RestaurentManagementConsole.customer.Customer;
-import RestaurentManagementConsole.waiter.Waiter;
 
 public class Restaurent implements CustomerData, WaiterData, WorkerData, Serve {
 
@@ -79,12 +76,12 @@ public class Restaurent implements CustomerData, WaiterData, WorkerData, Serve {
     @Override
     public void addCustomerToRestaurent(Customer customer) {
         customers.add(customer);
-        for (Waiter waiter : waiters) {
-            if (waiter.getTablenumbers().contains(customer.getTablenumber())) {
-                customer.setWaiter(waiter);
-                waiter.assignCustomer(customer.getId());
-            }
-        }
+        // for (Waiter waiter : waiters) {
+        //     if (waiter.getTablenumbers().contains(customer.getTablenumber())) {
+        //         customer.setWaiter(waiter);
+        //         waiter.assignCustomer(customer.getId());
+        //     }
+        // }
     }
 
     @Override
@@ -99,11 +96,11 @@ public class Restaurent implements CustomerData, WaiterData, WorkerData, Serve {
     }
 
     @Override
-    public Waiter returnWaiter(String orderid) {
+    public Waiter returnWaiter(int orderid) {
         for (Waiter waiter : waiters) {
             Collection<OrderList> orders = waiter.getOrders().values();
             for (OrderList order : orders) {
-                if (order.getOrderId().equals(orderid)) {
+                if (order.getOrderId()==orderid) {
                     return waiter;
                 }
             }
@@ -113,9 +110,19 @@ public class Restaurent implements CustomerData, WaiterData, WorkerData, Serve {
 
     @Override
     public Customer returnCustomer(int waiterid) {
-        for (Customer customer : customers) {
-            if (customer.getWaiter().getId() == waiterid) {
-                return customer;
+        // for (Customer customer : customers) {
+        //     if (customer.getWaiter().getId() == waiterid) {
+        //         return customer;
+        //     }
+        // }
+        return null;
+    }
+
+    public Waiter getWaiter(String TableNumber,int customerid){
+        for (Waiter waiter : waiters) {
+            if(waiter.getTablenumbers().contains(TableNumber)){
+                waiter.assignCustomer(customerid);
+                return waiter;
             }
         }
         return null;

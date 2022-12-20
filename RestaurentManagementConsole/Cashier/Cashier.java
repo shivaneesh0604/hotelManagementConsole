@@ -9,7 +9,7 @@ public class Cashier {
 
     private final int id;
     private final String name;
-    private HashMap<String, Bill> bills = new HashMap<>();
+    private HashMap<Integer, Bill> bills = new HashMap<>();
 
     private Cashier(int id, String name) {
         this.id = id;
@@ -25,13 +25,13 @@ public class Cashier {
         return cashier;
     }
 
-    public Bill generateBill(ArrayList<Order> order, String orderid) {
+    public Bill generateBill(ArrayList<Order> order, int orderid) {
         Bill bill = new Bill(order,orderid);
         bills.put(orderid, bill);
         return bill;
     }
 
-    public void payBill(float paymentAmount, String orderid) {
+    public void payBill(float paymentAmount, int orderid) {
         if (bills.get(orderid).getTotalAmount() == paymentAmount) {
             System.out.println("payment done");
         }

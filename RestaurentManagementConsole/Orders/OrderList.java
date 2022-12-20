@@ -6,7 +6,7 @@ import java.util.Iterator;
 
 public class OrderList {
 
-    private String orderId;
+    private int orderId=0;
 
     private ArrayList<Order> orders = new ArrayList<>();
 
@@ -53,13 +53,12 @@ public class OrderList {
         newOrder.setDelivered(true);
     }
 
-    public String getOrderId() {
+    public int getOrderId() {
         return orderId;
     }
 
-    public String setOrderId(int id, String name) {
-        this.orderId = id + name;
-        return orderId;
+    public void setOrderId(int id) {
+        this.orderId = id ;
     }
 
 }

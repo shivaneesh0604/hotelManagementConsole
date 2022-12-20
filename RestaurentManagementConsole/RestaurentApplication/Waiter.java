@@ -1,4 +1,4 @@
-package RestaurentManagementConsole.waiter;
+package RestaurentManagementConsole.RestaurentApplication;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,14 +6,8 @@ import java.util.List;
 
 import RestaurentManagementConsole.Cashier.Bill;
 import RestaurentManagementConsole.Cashier.Cashier;
-import RestaurentManagementConsole.KitchenOrderSystem.Chef;
-import RestaurentManagementConsole.KitchenOrderSystem.KitchenSystem;
 import RestaurentManagementConsole.Orders.Order;
 import RestaurentManagementConsole.Orders.OrderList;
-import RestaurentManagementConsole.Restaurent.MenuRoles;
-import RestaurentManagementConsole.RestaurentApplication.Restaurent;
-import RestaurentManagementConsole.RestaurentApplication.Serve;
-import RestaurentManagementConsole.customer.Customer;
 import RestaurentManagementConsole.menu.Menu;
 import RestaurentManagementConsole.menu.UserMenu;
 
@@ -24,20 +18,18 @@ public class Waiter {
     private UserMenu menu;
     private final HashMap<Integer, OrderList> orders;
     private final ArrayList<String> Tablenumbers;
-    private final MenuRoles role;
     private final Serve serves;
 
     public Waiter(int waiter_id, String name) {
         this.id = waiter_id;
         this.name = name;
-        this.role = MenuRoles.MENU_NONEDITORS;
         Tablenumbers = new ArrayList<>();
         orders = new HashMap<>();
         menu = Menu.getinstance();
         serves = Restaurent.getInstanceRestaurent();
     }
 
-    public void assignCustomer(int customerid) {
+    protected void assignCustomer(int customerid) {
         OrderList order = new OrderList();
         this.orders.put(customerid, order);
     }
@@ -55,14 +47,14 @@ public class Waiter {
         }
     }
 
-    public void processOrder(Customer customer) {
-        OrderList o1 = orders.get(customer.getId());
+    public void processOrder(int customerid) {
+        OrderList o1 = orders.get(customerid);
 
         if (o1.getOrders().size() == 0) {
             throw new RuntimeException();
         }
-        if (o1.getOrderId() == null) {
-            o1.setOrderId(customer.getId(), customer.getName());
+        if (o1.getOrderId()==0) {
+            o1.setOrderId(customerid);
         }
         for (Order order : o1.getOrders()) {
             if (order.isDelivered()) {
@@ -76,7 +68,7 @@ public class Waiter {
         }
     }
 
-    public void ReceiveOrder(String orderID, ArrayList<Order> order) {
+    protected void ReceiveOrder(int orderID, ArrayList<Order> order) {
         serves.returnCustomer(this.id).receiveOrder(order);
     }
 
@@ -127,15 +119,15 @@ public class Waiter {
         return menu;
     }
 
-    public List<String> getTablenumbers() {
+    protected List<String> getTablenumbers() {
         return Tablenumbers;
     }
 
-    public void setTableNumber(String tablenumber) {
+    protected void setTableNumber(String tablenumber) {
         this.Tablenumbers.add(tablenumber);
     }
 
-    public int getId() {
+    protected int getId() {
         return id;
     }
 
@@ -143,12 +135,8 @@ public class Waiter {
         return name;
     }
 
-    public HashMap<Integer, OrderList> getOrders() {
+    protected HashMap<Integer, OrderList> getOrders() {
         return orders;
-    }
-
-    public MenuRoles getRole() {
-        return role;
     }
 
 }

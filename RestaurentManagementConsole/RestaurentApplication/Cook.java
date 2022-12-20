@@ -1,4 +1,4 @@
-package RestaurentManagementConsole.KitchenOrderSystem;
+package RestaurentManagementConsole.RestaurentApplication;
 
 import java.util.HashMap;
 

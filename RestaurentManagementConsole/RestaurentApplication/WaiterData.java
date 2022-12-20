@@ -2,8 +2,6 @@ package RestaurentManagementConsole.RestaurentApplication;
 
 import java.util.List;
 
-import RestaurentManagementConsole.waiter.Waiter;
-
 public interface WaiterData {
     public void addWaitersToRestaurent(Waiter waiter);
 

@@ -1,21 +1,18 @@
-package RestaurentManagementConsole.KitchenOrderSystem;
+package RestaurentManagementConsole.RestaurentApplication;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
 import RestaurentManagementConsole.Orders.Order;
-import RestaurentManagementConsole.RestaurentApplication.Restaurent;
-import RestaurentManagementConsole.RestaurentApplication.Serve;
-import RestaurentManagementConsole.waiter.Waiter;
 
 public class Chef implements KitchenSystem {
 
     private final int id;
     private final String name;
     private ArrayList<Cook> cook = new ArrayList<>();
-    private HashMap<String, ArrayList<Order>> ordersFromWaiter = new HashMap<>();
-    private HashMap<String, ArrayList<Order>> PreparedordersFromCook = new HashMap<>();
+    private HashMap<Integer, ArrayList<Order>> ordersFromWaiter = new HashMap<>();
+    private HashMap<Integer, ArrayList<Order>> PreparedordersFromCook = new HashMap<>();
     private final Serve serves;
 
     private Chef(int id, String name) {
@@ -38,7 +35,7 @@ public class Chef implements KitchenSystem {
     }
 
     @Override
-    public void storeOrder(String OrderID, Order order, Waiter waiter) {
+    public void storeOrder(int OrderID, Order order, Waiter waiter) {
 
         if (ordersFromWaiter.containsKey(OrderID)) {
             ArrayList<Order> order1 = ordersFromWaiter.get(OrderID);
@@ -62,7 +59,7 @@ public class Chef implements KitchenSystem {
         }
     }
 
-    public void assignFoodToCookAndReceiveFood(String orderid) {
+    public void assignFoodToCookAndReceiveFood(int orderid) {
         Random random = new Random();
         int index = random.nextInt(cook.size());
         Cook cook2 = cook.get(index);
@@ -89,7 +86,7 @@ public class Chef implements KitchenSystem {
         }
     }
 
-    public void sendFoodToWaiter(String orderID) {
+    public void sendFoodToWaiter(int orderID) {
         serves.returnWaiter(orderID).ReceiveOrder(orderID, PreparedordersFromCook.get(orderID));
     }
 

@@ -11,10 +11,10 @@ public class Bill {
 
     private final UserMenu menu;
     private final ArrayList<Order> order;
-    private final String orderid;
+    private final int orderid;
     private float totalAmount;
 
-    public Bill(ArrayList<Order> order,String orderid) {
+    public Bill(ArrayList<Order> order,int orderid) {
         this.order = order;
         this.orderid = orderid;
         menu = Menu.getinstance();
