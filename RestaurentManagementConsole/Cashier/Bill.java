@@ -5,11 +5,10 @@ import java.util.ArrayList;
 import RestaurentManagementConsole.Orders.Order;
 import RestaurentManagementConsole.menu.Item;
 import RestaurentManagementConsole.menu.Menu;
-import RestaurentManagementConsole.menu.UserMenu;
 
 public class Bill {
 
-    private final UserMenu menu;
+    private final ArrayList<Item> menu;
     private final ArrayList<Order> order;
     private final int orderid;
     private float totalAmount;
@@ -17,7 +16,7 @@ public class Bill {
     public Bill(ArrayList<Order> order,int orderid) {
         this.order = order;
         this.orderid = orderid;
-        menu = Menu.getinstance();
+        menu = Menu.getinstance().getMenuList();
     }
 
     public float ReadBill() {
@@ -31,7 +30,7 @@ public class Bill {
         int price = 0;
         // String Bill = "";
         for (Order newOrder : order) {
-            for (Item item : menu.getMenuList()) {
+            for (Item item : menu) {
                 if (item.getFoodName().equals(newOrder.getFoodname())) {
                     price = item.getPrice() * newOrder.getQuantity();
                     System.out.format("  %-9s             %-9d          %5d               %9d\n", newOrder.getFoodname(),

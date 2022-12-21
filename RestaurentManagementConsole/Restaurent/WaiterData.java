@@ -2,7 +2,7 @@ package RestaurentManagementConsole.Restaurent;
 
 import java.util.List;
 
-import RestaurentManagementConsole.RestaurentApplication.Waiter;
+import RestaurentManagementConsole.Cashier.Cashier;
 
 public interface WaiterData {
     public void addWaitersToRestaurent(Waiter waiter);
@@ -13,4 +13,5 @@ public interface WaiterData {
 
     public List<String> returnTableNumbers(int waiterID);
     
+
 }

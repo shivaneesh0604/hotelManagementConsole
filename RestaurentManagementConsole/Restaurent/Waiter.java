@@ -1,4 +1,4 @@
-package RestaurentManagementConsole.RestaurentApplication;
+package RestaurentManagementConsole.Restaurent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,7 +8,7 @@ import RestaurentManagementConsole.Cashier.Bill;
 import RestaurentManagementConsole.Cashier.Cashier;
 import RestaurentManagementConsole.Orders.Order;
 import RestaurentManagementConsole.Orders.OrderList;
-import RestaurentManagementConsole.Restaurent.Restaurent;
+import RestaurentManagementConsole.RestaurentApplication.KitchenSystem;
 import RestaurentManagementConsole.menu.Menu;
 import RestaurentManagementConsole.menu.UserMenu;
 
@@ -28,7 +28,7 @@ public class Waiter {
         menu = Menu.getinstance();
     }
 
-    public void assignCustomer(int customerid) {
+    void assignCustomer(int customerid) {
         OrderList order = new OrderList();
         this.orders.put(customerid, order);
     }
@@ -55,7 +55,6 @@ public class Waiter {
         if (o1.getOrderId()==0) {
             o1.setOrderId(customerid);
         }
-        System.out.println("helo");
         KitchenSystem kitchensystem = Restaurent.getInstanceRestaurent().getrandomChef();
         ArrayList<Order> orders = new ArrayList<>();
         for (Order order : o1.getOrders()) {
@@ -65,6 +64,7 @@ public class Waiter {
                 continue;
             } else if (!order.isDelivered()) {
                 orders.add(order);
+                order.setDelivered(true);
             }
         }
         return kitchensystem.assignToChefAndReceieveFood( orders);
@@ -105,7 +105,8 @@ public class Waiter {
 
     public Bill askbill(int customerid) {
         OrderList order = this.orders.get(customerid);
-        Cashier cashier = Cashier.getInstance();
+        FetchCashier fetchCashier= Restaurent.getInstanceRestaurent();
+        Cashier cashier = fetchCashier.returnCashier();
         return cashier.generateBill(order.getOrders(), order.getOrderId());
     }
 
@@ -117,11 +118,11 @@ public class Waiter {
         return menu;
     }
 
-    public List<String> getTablenumbers() {
+    List<String> getTablenumbers() {
         return Tablenumbers;
     }
 
-    public void setTableNumber(String tablenumber) {
+     void setTableNumber(String tablenumber) {
         this.Tablenumbers.add(tablenumber);
     }
 
@@ -131,10 +132,6 @@ public class Waiter {
 
     public String getName() {
         return name;
-    }
-
-    public HashMap<Integer, OrderList> getOrders() {
-        return orders;
     }
 
 }

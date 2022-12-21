@@ -5,20 +5,21 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+import RestaurentManagementConsole.Cashier.Cashier;
 import RestaurentManagementConsole.RestaurentApplication.Chef;
 import RestaurentManagementConsole.RestaurentApplication.Cook;
-import RestaurentManagementConsole.RestaurentApplication.Waiter;
 import RestaurentManagementConsole.customer.Customer;
 import RestaurentManagementConsole.menu.Category;
 import RestaurentManagementConsole.menu.Item;
 import RestaurentManagementConsole.menu.Menu;
 
-public class Restaurent implements CustomerData, WaiterData, WorkerData {
+public class Restaurent implements CustomerData, WaiterData, WorkerData,FetchCashier {
 
     private ArrayList<Waiter> waiters = new ArrayList<Waiter>();
     private ArrayList<Customer> customers = new ArrayList<>();
     private ArrayList<Cook> workers = new ArrayList<Cook>();
     private ArrayList<Chef> chefs = new ArrayList<Chef>();
+    private Cashier cashier = Cashier.getInstance();
     private Menu menu = Menu.getinstance();
 
     private Restaurent() {
@@ -30,7 +31,7 @@ public class Restaurent implements CustomerData, WaiterData, WorkerData {
         Cook cook1 = new Cook(1, "naveen");
         addWorkerToRestaurent(cook1);
         Cook cook2 = new Cook(2, "milky");
-        addWorkerToRestaurent(cook2); 
+        addWorkerToRestaurent(cook2);
         menu.addMenusItems(new Item("DOSA", 30, Category.VEG));
         menu.addMenusItems(new Item("chicken", 100, Category.NONVEG));
     }
@@ -67,7 +68,6 @@ public class Restaurent implements CustomerData, WaiterData, WorkerData {
     public void addTableNumbersToWaiters(String tablenumber, int waiterid) {
         for (Waiter waiter1 : waiters) {
             if (waiter1.getId() == waiterid) {
-
                 boolean check = checkTableNumbersForAllWaiters(tablenumber);
                 if (check) {
                     System.out.println("Table number already added to another waiter so can't add");
@@ -82,7 +82,6 @@ public class Restaurent implements CustomerData, WaiterData, WorkerData {
 
     @Override
     public void deleteTableNumberforWaiter(String tablenumber, int waiterid) {
-
         for (Waiter waiter1 : waiters) {
             if (waiter1.getId() == waiterid) {
                 Iterator<String> itr = waiter1.getTablenumbers().iterator();
@@ -130,9 +129,13 @@ public class Restaurent implements CustomerData, WaiterData, WorkerData {
         return null;
     }
 
+    @Override
+    public Cashier returnCashier(){
+        return this.cashier;
+    }
+
     public Chef getrandomChef() {
         Random rand = new Random();
         return chefs.get(rand.nextInt(chefs.size()));
     }
-
 }

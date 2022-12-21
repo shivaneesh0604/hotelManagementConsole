@@ -23,7 +23,6 @@ public class Chef implements KitchenSystem {
     public ArrayList<Order> assignToChefAndReceieveFood(ArrayList<Order> orders) {
 
         Random random = new Random();       
-        System.out.println(cook.size()); 
         int index = random.nextInt(cook.size());
         Cook cook2 = cook.get(index);
         ArrayList<Order> processedOrders = new ArrayList<>();

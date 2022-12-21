@@ -1,7 +1,5 @@
 package RestaurentManagementConsole.RestaurentApplication;
 
-import java.util.HashMap;
-
 import RestaurentManagementConsole.Orders.Order;
 
 public class Cook  {

@@ -1,6 +1,5 @@
 package RestaurentManagementConsole.Restaurent;
 
-import RestaurentManagementConsole.RestaurentApplication.Waiter;
 import RestaurentManagementConsole.customer.Customer;
 
 public interface CustomerData {

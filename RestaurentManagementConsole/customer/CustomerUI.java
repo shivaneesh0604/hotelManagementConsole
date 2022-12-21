@@ -7,7 +7,7 @@ import RestaurentManagementConsole.Cashier.Bill;
 import RestaurentManagementConsole.Orders.Order;
 import RestaurentManagementConsole.Restaurent.CustomerData;
 import RestaurentManagementConsole.Restaurent.Restaurent;
-import RestaurentManagementConsole.RestaurentApplication.Waiter;
+import RestaurentManagementConsole.Restaurent.Waiter;
 import RestaurentManagementConsole.menu.UserMenu;
 
 public class CustomerUI {
@@ -20,7 +20,7 @@ public class CustomerUI {
         System.out.println("enter table number to sit");
         String tablenumber = in.next();
         Waiter waiter = customerData.getWaiter(tablenumber, customer.getId());
-
+        
         while (true) {
 
             System.out.println(
