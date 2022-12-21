@@ -52,22 +52,20 @@ public class Waiter {
         if (o1.getOrders().size() == 0) {
             throw new NullPointerException();
         }
-        if (o1.getOrderId()==0) {
+        if (o1.getOrderId() == 0) {
             o1.setOrderId(customerid);
         }
-        KitchenSystem kitchensystem = Restaurent.getInstanceRestaurent().getrandomChef();
         ArrayList<Order> orders = new ArrayList<>();
         for (Order order : o1.getOrders()) {
             if (order.isDelivered()) {
-                System.out.println("that food" + order.getFoodname()
-                + "is delivered so shoulnt send that to kitchen order manager");
                 continue;
             } else if (!order.isDelivered()) {
                 orders.add(order);
                 order.setDelivered(true);
             }
         }
-        return kitchensystem.assignToChefAndReceieveFood( orders);
+         KitchenSystem kitchensystem = new KitchenOrderSystem();
+        return kitchensystem.assignToChefAndReceieveFood(orders);
     }
 
     public void DeleteOrder(int customerid, String foodName, int quantity) {
@@ -95,9 +93,7 @@ public class Waiter {
                 break;
             }
         }
-        if (!checkfoodprocessed) {
-            System.out.println("can't delete the food since it is already processed");
-        } else {
+        if (checkfoodprocessed) {
             System.out.println("Orders in main orders are");
             o.deleteOrder(foodName, quantity);
         }
@@ -105,13 +101,15 @@ public class Waiter {
 
     public Bill askbill(int customerid) {
         OrderList order = this.orders.get(customerid);
-        FetchCashier fetchCashier= Restaurent.getInstanceRestaurent();
+        FetchCashier fetchCashier = Restaurent.getInstanceRestaurent();
         Cashier cashier = fetchCashier.returnCashier();
         return cashier.generateBill(order.getOrders(), order.getOrderId());
     }
 
     public void paybill(float paymentAmount, int customerid) {
-        Cashier.getInstance().payBill(paymentAmount, orders.get(customerid).getOrderId());
+        FetchCashier fetchCashier = Restaurent.getInstanceRestaurent();
+        Cashier cashier = fetchCashier.returnCashier();
+        cashier.payBill(paymentAmount, orders.get(customerid).getOrderId());
     }
 
     public UserMenu providesMenu() {
@@ -122,7 +120,7 @@ public class Waiter {
         return Tablenumbers;
     }
 
-     void setTableNumber(String tablenumber) {
+    void setTableNumber(String tablenumber) {
         this.Tablenumbers.add(tablenumber);
     }
 

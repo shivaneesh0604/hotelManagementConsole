@@ -3,8 +3,6 @@ package RestaurentManagementConsole.Manager;
 import java.util.Arrays;
 import java.util.List;
 
-import RestaurentManagementConsole.Restaurent.ManagerUI;
-
 
 public class Manager {
 

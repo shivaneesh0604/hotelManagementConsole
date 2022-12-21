@@ -5,7 +5,7 @@ import java.util.Random;
 
 import RestaurentManagementConsole.Orders.Order;
 
-public class Chef implements KitchenSystem {
+public class Chef {
 
     private final int id;
     private final String name;
@@ -19,7 +19,6 @@ public class Chef implements KitchenSystem {
         this.cook.add(Cook);
     }
 
-    @Override
     public ArrayList<Order> assignToChefAndReceieveFood(ArrayList<Order> orders) {
 
         Random random = new Random();       

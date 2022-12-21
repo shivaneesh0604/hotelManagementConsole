@@ -13,7 +13,7 @@ import RestaurentManagementConsole.menu.Category;
 import RestaurentManagementConsole.menu.Item;
 import RestaurentManagementConsole.menu.Menu;
 
-public class Restaurent implements CustomerData, WaiterData, WorkerData,FetchCashier {
+public class Restaurent implements CustomerData, WaiterData, WorkerData,FetchCashier,FetchChef {
 
     private ArrayList<Waiter> waiters = new ArrayList<Waiter>();
     private ArrayList<Customer> customers = new ArrayList<>();
@@ -134,8 +134,11 @@ public class Restaurent implements CustomerData, WaiterData, WorkerData,FetchCas
         return this.cashier;
     }
 
-    public Chef getrandomChef() {
+    @Override
+    public Chef getRandomChef() {
         Random rand = new Random();
         return chefs.get(rand.nextInt(chefs.size()));
     }
+
+    
 }

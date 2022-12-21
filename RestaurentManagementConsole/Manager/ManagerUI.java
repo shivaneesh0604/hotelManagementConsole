@@ -1,8 +1,12 @@
-package RestaurentManagementConsole.Restaurent;
+package RestaurentManagementConsole.Manager;
 
 import java.util.List;
 import java.util.Scanner;
 
+import RestaurentManagementConsole.Restaurent.Restaurent;
+import RestaurentManagementConsole.Restaurent.Waiter;
+import RestaurentManagementConsole.Restaurent.WaiterData;
+import RestaurentManagementConsole.Restaurent.WorkerData;
 import RestaurentManagementConsole.RestaurentApplication.Chef;
 import RestaurentManagementConsole.RestaurentApplication.Cook;
 import RestaurentManagementConsole.menu.Item;

@@ -20,9 +20,8 @@ public class CustomerUI {
         System.out.println("enter table number to sit");
         String tablenumber = in.next();
         Waiter waiter = customerData.getWaiter(tablenumber, customer.getId());
-        
-        while (true) {
 
+        while (true) {
             System.out.println(
                     "press 1 for asking menu \n 2 to add new orders \n 3 for deleteOrder \n 4 for confirm order \n 5 for asking bill and paying  ");
             int option = in.nextInt();
@@ -47,16 +46,21 @@ public class CustomerUI {
                     String foodname1 = in.nextLine();
                     System.out.println("enter the quantity");
                     int quantity1 = in.nextInt();
-                    waiter.DeleteOrder(customer.getId(), foodname1, quantity1);
+                    try {
+
+                        waiter.DeleteOrder(customer.getId(), foodname1, quantity1);
+                    } catch (Exception e) {
+                        System.out.println("this food is not ordered");
+                    }
                     break;
 
                 case 4:
-                try {
-                    ArrayList<Order > orders  = waiter.processOrder(customer.getId());
-                    customer.receiveOrder(orders);
-                } catch (Exception e) {
-                    System.out.println("add an order first");
-                }
+                    try {
+                        ArrayList<Order> orders = waiter.processOrder(customer.getId());
+                        customer.receiveOrder(orders);
+                    } catch (Exception e) {
+                        System.out.println("add an order first");
+                    }
                     break;
 
                 case 5:
@@ -69,10 +73,9 @@ public class CustomerUI {
             }
             System.out.println("if you want to close options press 1");
             int closeOption = in.nextInt();
-            if(closeOption==1){
+            if (closeOption == 1) {
                 break;
-            }
-            else{
+            } else {
                 continue;
             }
 

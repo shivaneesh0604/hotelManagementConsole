@@ -34,6 +34,7 @@ public class Cashier {
     public void payBill(float paymentAmount, int orderid) {
         if (bills.get(orderid).getTotalAmount() == paymentAmount) {
             System.out.println("payment done");
+            System.out.println("Happy journey! \n THANK YOU");
         }
         else{
             System.out.println("payable amount is less than "+bills.get(orderid).getTotalAmount()+" so enter amount equal to "+bills.get(orderid).getTotalAmount());
