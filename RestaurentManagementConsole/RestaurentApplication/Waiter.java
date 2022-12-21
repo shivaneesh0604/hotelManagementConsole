@@ -18,7 +18,6 @@ public class Waiter {
     private UserMenu menu;
     private final HashMap<Integer, OrderList> orders;
     private final ArrayList<String> Tablenumbers;
-    private final Serve serves;
 
     public Waiter(int waiter_id, String name) {
         this.id = waiter_id;
@@ -26,7 +25,6 @@ public class Waiter {
         Tablenumbers = new ArrayList<>();
         orders = new HashMap<>();
         menu = Menu.getinstance();
-        serves = Restaurent.getInstanceRestaurent();
     }
 
     protected void assignCustomer(int customerid) {
@@ -62,14 +60,14 @@ public class Waiter {
                         + "is delivered so shoulnt send that to kitchen order manager");
                 continue;
             } else if (!order.isDelivered()) {
-                KitchenSystem kitchensystem = Chef.getInstanceChef();
+                KitchenSystem kitchensystem = Restaurent.getInstanceRestaurent().getrandomChef();
                 kitchensystem.storeOrder(o1.getOrderId(), order, this);
             }
         }
     }
 
     protected void ReceiveOrder(int orderID, ArrayList<Order> order) {
-        serves.returnCustomer(this.id).receiveOrder(order);
+        // serves.returnCustomer(this.id).receiveOrder(order);
     }
 
     public void DeleteOrder(int customerid, String foodName, int quantity) {

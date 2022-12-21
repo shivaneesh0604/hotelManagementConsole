@@ -10,7 +10,7 @@ public class Cook  {
     private final String name;
     private HashMap<Chef, Order> orders = new HashMap<>();
 
-    public Cook(int id, String name, String Username, String Password) {
+    public Cook(int id, String name) {
         this.id = id;
         this.name = name;
     }

@@ -13,21 +13,10 @@ public class Chef implements KitchenSystem {
     private ArrayList<Cook> cook = new ArrayList<>();
     private HashMap<Integer, ArrayList<Order>> ordersFromWaiter = new HashMap<>();
     private HashMap<Integer, ArrayList<Order>> PreparedordersFromCook = new HashMap<>();
-    private final Serve serves;
 
-    private Chef(int id, String name) {
+    public Chef(int id, String name) {
         this.id = id;
         this.name = name;
-        serves = Restaurent.getInstanceRestaurent();
-    }
-
-    private static Chef chef = null;
-
-    public static Chef getInstanceChef() {
-        if (chef == null) {
-            chef = new Chef(1, "raghu");
-        }
-        return chef;
     }
 
     public void addCookToChef(Cook Cook) {
@@ -87,7 +76,7 @@ public class Chef implements KitchenSystem {
     }
 
     public void sendFoodToWaiter(int orderID) {
-        serves.returnWaiter(orderID).ReceiveOrder(orderID, PreparedordersFromCook.get(orderID));
+        // serves.returnWaiter(orderID).ReceiveOrder(orderID, PreparedordersFromCook.get(orderID));
     }
 
     public int getId() {

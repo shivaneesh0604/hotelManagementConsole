@@ -4,18 +4,36 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
+import RestaurentManagementConsole.Manager.CustomerData;
+import RestaurentManagementConsole.Manager.WaiterData;
+import RestaurentManagementConsole.Manager.WorkerData;
 import RestaurentManagementConsole.Orders.OrderList;
 import RestaurentManagementConsole.customer.Customer;
+import RestaurentManagementConsole.menu.Category;
+import RestaurentManagementConsole.menu.Item;
+import RestaurentManagementConsole.menu.Menu;
 
 public class Restaurent implements CustomerData, WaiterData, WorkerData, Serve {
 
-    private ArrayList<Waiter> waiters = new ArrayList<>();
+    private ArrayList<Waiter> waiters = new ArrayList<Waiter>();
     private ArrayList<Customer> customers = new ArrayList<>();
-    private ArrayList<Cook> worker = new ArrayList<>();
+    private ArrayList<Cook> workers = new ArrayList<Cook>();
+
+    private ArrayList<Chef> chefs = new ArrayList<Chef>();
+    private Menu menu = Menu.getinstance();
 
     private Restaurent() {
-
+        waiters.add(new Waiter(1, "shiva"));
+        waiters.add(new Waiter(2, "sankar"));
+        waiters.add(new Waiter(1, "sathya"));
+        workers.add(new Cook(1, "naveen"));
+        workers.add(new Cook(2, "milky"));
+        chefs.add(new Chef(1, "raju"));
+        chefs.add(new Chef(1, "ramu"));
+        menu.addMenusItems(new Item("DOSA", 30, Category.VEG));
+        menu.addMenusItems(new Item("chicken", 100, Category.NONVEG));
     }
 
     private static Restaurent restaurent = null;
@@ -76,18 +94,14 @@ public class Restaurent implements CustomerData, WaiterData, WorkerData, Serve {
     @Override
     public void addCustomerToRestaurent(Customer customer) {
         customers.add(customer);
-        // for (Waiter waiter : waiters) {
-        //     if (waiter.getTablenumbers().contains(customer.getTablenumber())) {
-        //         customer.setWaiter(waiter);
-        //         waiter.assignCustomer(customer.getId());
-        //     }
-        // }
     }
 
     @Override
-    public void addWorkerToRestaurent(Cook worker) {
-        this.worker.add(worker);
-        Chef.getInstanceChef().addCookToChef(worker);
+    public void addWorkerToRestaurent(Cook cook) {
+        this.workers.add(cook);
+        for (Chef chef : chefs) {
+            chef.addCookToChef(cook);
+        }
     }
 
     @Override
@@ -96,11 +110,16 @@ public class Restaurent implements CustomerData, WaiterData, WorkerData, Serve {
     }
 
     @Override
+    public void addChefToRestaurent(Chef chef) {
+        chefs.add(chef);
+    }
+
+    @Override
     public Waiter returnWaiter(int orderid) {
         for (Waiter waiter : waiters) {
             Collection<OrderList> orders = waiter.getOrders().values();
             for (OrderList order : orders) {
-                if (order.getOrderId()==orderid) {
+                if (order.getOrderId() == orderid) {
                     return waiter;
                 }
             }
@@ -111,21 +130,27 @@ public class Restaurent implements CustomerData, WaiterData, WorkerData, Serve {
     @Override
     public Customer returnCustomer(int waiterid) {
         // for (Customer customer : customers) {
-        //     if (customer.getWaiter().getId() == waiterid) {
-        //         return customer;
-        //     }
+        // if (customer.getWaiter().getId() == waiterid) {
+        // return customer;
+        // }
         // }
         return null;
     }
 
-    public Waiter getWaiter(String TableNumber,int customerid){
+    @Override
+    public Waiter getWaiter(String TableNumber, int customerid) {
         for (Waiter waiter : waiters) {
-            if(waiter.getTablenumbers().contains(TableNumber)){
+            if (waiter.getTablenumbers().contains(TableNumber)) {
                 waiter.assignCustomer(customerid);
                 return waiter;
             }
         }
         return null;
+    }
+
+    public Chef getrandomChef() {
+        Random rand = new Random();
+        return chefs.get(rand.nextInt(chefs.size()));
     }
 
 }

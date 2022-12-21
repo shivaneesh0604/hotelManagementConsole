@@ -3,24 +3,30 @@ package RestaurentManagementConsole.customer;
 import java.util.Scanner;
 
 import RestaurentManagementConsole.Cashier.Bill;
+import RestaurentManagementConsole.Manager.CustomerData;
 import RestaurentManagementConsole.RestaurentApplication.Restaurent;
 import RestaurentManagementConsole.RestaurentApplication.Waiter;
 import RestaurentManagementConsole.menu.UserMenu;
 
 public class CustomerUI {
-    public static void enterTheRestaurent(int customerid) {
-        Scanner sc = new Scanner(System.in);
+    private CustomerData customerData = Restaurent.getInstanceRestaurent();
+
+    public void enterTheRestaurent(Customer customer) {
+
+        customerData.addCustomerToRestaurent(customer);
+        Scanner in = new Scanner(System.in);
         System.out.println("enter table number to sit");
-        String tablenumber = sc.nextLine();
-        Waiter waiter = Restaurent.getInstanceRestaurent().getWaiter(tablenumber, customerid);
+        String tablenumber = in.next();
+        Waiter waiter = customerData.getWaiter(tablenumber, customer.getId());
+
         while (true) {
             System.out.println("press 1 to ask options");
-            int askoptions = sc.nextInt();
+            int askoptions = in.nextInt();
             while (askoptions == 1) {
 
                 System.out.println(
                         "press 1 for asking menu \n 2 to add new orders \n 3 for deleteOrder \n 4 for confirm order \n 5 for asking bill and paying  ");
-                int option = sc.nextInt();
+                int option = in.nextInt();
                 switch (option) {
                     case 1:
                         UserMenu menu = waiter.providesMenu();
@@ -29,36 +35,36 @@ public class CustomerUI {
 
                     case 2:
                         System.out.println("enter food name ");
-                        sc.nextLine();
-                        String foodname = sc.nextLine();
+                        in.nextLine();
+                        String foodname = in.nextLine();
                         System.out.println("enter the quantity");
-                        int quantity = sc.nextInt();
-                        waiter.TakeNewOrder(customerid, foodname, quantity);
+                        int quantity = in.nextInt();
+                        waiter.TakeNewOrder(customer.getId(), foodname, quantity);
                         break;
 
                     case 3:
                         System.out.println("enter food name to delete");
-                        sc.nextLine();
-                        String foodname1 = sc.nextLine();
+                        in.nextLine();
+                        String foodname1 = in.nextLine();
                         System.out.println("enter the quantity");
-                        int quantity1 = sc.nextInt();
-                        waiter.DeleteOrder(customerid, foodname1, quantity1);
+                        int quantity1 = in.nextInt();
+                        waiter.DeleteOrder(customer.getId(), foodname1, quantity1);
                         break;
 
                     case 4:
-                        waiter.processOrder(customerid);
+                        waiter.processOrder(customer.getId());
                         break;
 
                     case 5:
-                        Bill bill = waiter.askbill(customerid);
+                        Bill bill = waiter.askbill(customer.getId());
                         bill.ReadBill();
-                        float paymentAmount = sc.nextFloat();
-                        waiter.paybill(paymentAmount, customerid);
+                        System.out.println("enter the amount to pay");
+                        float paymentAmount = in.nextFloat();
+                        waiter.paybill(paymentAmount, customer.getId());
                         break;
                 }
             }
 
-            sc.close();
         }
     }
 }

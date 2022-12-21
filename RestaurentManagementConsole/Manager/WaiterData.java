@@ -1,6 +1,8 @@
-package RestaurentManagementConsole.RestaurentApplication;
+package RestaurentManagementConsole.Manager;
 
 import java.util.List;
+
+import RestaurentManagementConsole.RestaurentApplication.Waiter;
 
 public interface WaiterData {
     public void addWaitersToRestaurent(Waiter waiter);
