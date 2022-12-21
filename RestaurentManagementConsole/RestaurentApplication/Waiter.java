@@ -8,6 +8,7 @@ import RestaurentManagementConsole.Cashier.Bill;
 import RestaurentManagementConsole.Cashier.Cashier;
 import RestaurentManagementConsole.Orders.Order;
 import RestaurentManagementConsole.Orders.OrderList;
+import RestaurentManagementConsole.Restaurent.Restaurent;
 import RestaurentManagementConsole.menu.Menu;
 import RestaurentManagementConsole.menu.UserMenu;
 
@@ -27,7 +28,7 @@ public class Waiter {
         menu = Menu.getinstance();
     }
 
-    protected void assignCustomer(int customerid) {
+    public void assignCustomer(int customerid) {
         OrderList order = new OrderList();
         this.orders.put(customerid, order);
     }
@@ -45,29 +46,28 @@ public class Waiter {
         }
     }
 
-    public void processOrder(int customerid) {
+    public ArrayList<Order> processOrder(int customerid) {
         OrderList o1 = orders.get(customerid);
 
         if (o1.getOrders().size() == 0) {
-            throw new RuntimeException();
+            throw new NullPointerException();
         }
         if (o1.getOrderId()==0) {
             o1.setOrderId(customerid);
         }
+        System.out.println("helo");
+        KitchenSystem kitchensystem = Restaurent.getInstanceRestaurent().getrandomChef();
+        ArrayList<Order> orders = new ArrayList<>();
         for (Order order : o1.getOrders()) {
             if (order.isDelivered()) {
                 System.out.println("that food" + order.getFoodname()
-                        + "is delivered so shoulnt send that to kitchen order manager");
+                + "is delivered so shoulnt send that to kitchen order manager");
                 continue;
             } else if (!order.isDelivered()) {
-                KitchenSystem kitchensystem = Restaurent.getInstanceRestaurent().getrandomChef();
-                kitchensystem.storeOrder(o1.getOrderId(), order, this);
+                orders.add(order);
             }
         }
-    }
-
-    protected void ReceiveOrder(int orderID, ArrayList<Order> order) {
-        // serves.returnCustomer(this.id).receiveOrder(order);
+        return kitchensystem.assignToChefAndReceieveFood( orders);
     }
 
     public void DeleteOrder(int customerid, String foodName, int quantity) {
@@ -117,15 +117,15 @@ public class Waiter {
         return menu;
     }
 
-    protected List<String> getTablenumbers() {
+    public List<String> getTablenumbers() {
         return Tablenumbers;
     }
 
-    protected void setTableNumber(String tablenumber) {
+    public void setTableNumber(String tablenumber) {
         this.Tablenumbers.add(tablenumber);
     }
 
-    protected int getId() {
+    public int getId() {
         return id;
     }
 
@@ -133,7 +133,7 @@ public class Waiter {
         return name;
     }
 
-    protected HashMap<Integer, OrderList> getOrders() {
+    public HashMap<Integer, OrderList> getOrders() {
         return orders;
     }
 

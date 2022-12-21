@@ -1,26 +1,23 @@
-package RestaurentManagementConsole.RestaurentApplication;
+package RestaurentManagementConsole.Restaurent;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-import RestaurentManagementConsole.Manager.CustomerData;
-import RestaurentManagementConsole.Manager.WaiterData;
-import RestaurentManagementConsole.Manager.WorkerData;
-import RestaurentManagementConsole.Orders.OrderList;
+import RestaurentManagementConsole.RestaurentApplication.Chef;
+import RestaurentManagementConsole.RestaurentApplication.Cook;
+import RestaurentManagementConsole.RestaurentApplication.Waiter;
 import RestaurentManagementConsole.customer.Customer;
 import RestaurentManagementConsole.menu.Category;
 import RestaurentManagementConsole.menu.Item;
 import RestaurentManagementConsole.menu.Menu;
 
-public class Restaurent implements CustomerData, WaiterData, WorkerData, Serve {
+public class Restaurent implements CustomerData, WaiterData, WorkerData {
 
     private ArrayList<Waiter> waiters = new ArrayList<Waiter>();
     private ArrayList<Customer> customers = new ArrayList<>();
     private ArrayList<Cook> workers = new ArrayList<Cook>();
-
     private ArrayList<Chef> chefs = new ArrayList<Chef>();
     private Menu menu = Menu.getinstance();
 
@@ -28,10 +25,12 @@ public class Restaurent implements CustomerData, WaiterData, WorkerData, Serve {
         waiters.add(new Waiter(1, "shiva"));
         waiters.add(new Waiter(2, "sankar"));
         waiters.add(new Waiter(1, "sathya"));
-        workers.add(new Cook(1, "naveen"));
-        workers.add(new Cook(2, "milky"));
         chefs.add(new Chef(1, "raju"));
         chefs.add(new Chef(1, "ramu"));
+        Cook cook1 = new Cook(1, "naveen");
+        addWorkerToRestaurent(cook1);
+        Cook cook2 = new Cook(2, "milky");
+        addWorkerToRestaurent(cook2); 
         menu.addMenusItems(new Item("DOSA", 30, Category.VEG));
         menu.addMenusItems(new Item("chicken", 100, Category.NONVEG));
     }
@@ -55,21 +54,27 @@ public class Restaurent implements CustomerData, WaiterData, WorkerData, Serve {
         return null;
     }
 
+    private boolean checkTableNumbersForAllWaiters(String tableNumber) {
+        for (Waiter waiters : waiters) {
+            if (waiters.getTablenumbers().contains(tableNumber)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public void addTableNumbersToWaiters(String tablenumber, int waiterid) {
-        boolean Tablecheck = false;
         for (Waiter waiter1 : waiters) {
             if (waiter1.getId() == waiterid) {
-                for (Waiter waiter2 : waiters) {
-                    if (waiter2.getTablenumbers().contains(tablenumber)) {
-                        Tablecheck = true;
-                        break;
-                    }
-                }
-                if (Tablecheck) {
+
+                boolean check = checkTableNumbersForAllWaiters(tablenumber);
+                if (check) {
                     System.out.println("Table number already added to another waiter so can't add");
+                    break;
                 } else {
                     waiter1.setTableNumber(tablenumber);
+                    break;
                 }
             }
         }
@@ -112,29 +117,6 @@ public class Restaurent implements CustomerData, WaiterData, WorkerData, Serve {
     @Override
     public void addChefToRestaurent(Chef chef) {
         chefs.add(chef);
-    }
-
-    @Override
-    public Waiter returnWaiter(int orderid) {
-        for (Waiter waiter : waiters) {
-            Collection<OrderList> orders = waiter.getOrders().values();
-            for (OrderList order : orders) {
-                if (order.getOrderId() == orderid) {
-                    return waiter;
-                }
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public Customer returnCustomer(int waiterid) {
-        // for (Customer customer : customers) {
-        // if (customer.getWaiter().getId() == waiterid) {
-        // return customer;
-        // }
-        // }
-        return null;
     }
 
     @Override

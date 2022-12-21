@@ -1,7 +1,9 @@
 package RestaurentManagementConsole.RestaurentApplication;
 
+import java.util.ArrayList;
+
 import RestaurentManagementConsole.Orders.Order;
 
 public interface KitchenSystem {
-    public void storeOrder(int orderId,Order order,Waiter waiter);
+    public ArrayList<Order> assignToChefAndReceieveFood(ArrayList<Order> orders);
 }

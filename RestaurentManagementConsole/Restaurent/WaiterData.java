@@ -1,4 +1,4 @@
-package RestaurentManagementConsole.Manager;
+package RestaurentManagementConsole.Restaurent;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package RestaurentManagementConsole.Manager;
+package RestaurentManagementConsole.Restaurent;
 
 import RestaurentManagementConsole.RestaurentApplication.Waiter;
 import RestaurentManagementConsole.customer.Customer;

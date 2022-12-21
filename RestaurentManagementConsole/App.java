@@ -20,17 +20,17 @@ public class App {
             System.out.println("Customer 1->" + c1.getName());
 
             c1.enterCustomerUI();
+
             
             break;
         }
 
-            
     }
 }
 
-
-//orders gets clubed with old order -> addcount is happenening and we are passing that order to storeorder function so it clubs up! 
+// orders gets clubed with old order -> addcount is happenening and we are
+// passing that order to storeorder function so it clubs up!
 
 // orderHook.deleteOrder(foodName, quantity, customer.getOrderID());
 
-//remove total item is not working
+// remove total item is not working
