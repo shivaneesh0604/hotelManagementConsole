@@ -14,9 +14,14 @@ public class Customer {
         this.name = name;
     }
 
-    public void enterCustomerUI() {
+    public void entersRestaurent(){
         CustomerUI customerui = new CustomerUI();
         customerui.enterTheRestaurent(this);
+    }
+
+    public void enterCustomerUI() {
+        CustomerUI2 customerui = new CustomerUI2();
+        customerui.entersRestaurent(this);
     }
 
     public void receiveOrder(ArrayList<Order> order) {

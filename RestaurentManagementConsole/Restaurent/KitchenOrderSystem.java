@@ -6,7 +6,7 @@ import RestaurentManagementConsole.Orders.Order;
 import RestaurentManagementConsole.RestaurentApplication.KitchenSystem;
 
 public class KitchenOrderSystem implements KitchenSystem {
-    private FetchChef restaurent = Restaurent.getInstanceRestaurent();
+    private KitchenSystemInterface restaurent = Restaurent.getInstanceRestaurent();
 
     @Override
     public  ArrayList<Order> assignToChefAndReceieveFood(ArrayList<Order> orders) {

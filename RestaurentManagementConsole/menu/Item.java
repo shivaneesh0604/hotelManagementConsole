@@ -4,12 +4,14 @@ public class Item {
 
     private final String foodName;
     private int price;
-    private final Category category;// V-veg NV-nonveg
+    private final Classificaton category;// V-veg NV-nonveg
+    private final Starter starter;
 
-    public Item(String foodName, int price, Category category) {
+    public Item(String foodName, int price, Classificaton classification,Starter starter) {
         this.foodName = foodName;
         this.price = price;
-        this.category = category;
+        this.category = classification;
+        this.starter = starter;
     }
 
     public String getFoodName() {
@@ -20,11 +22,15 @@ public class Item {
         return price;
     }
 
-    public Category getCategory() {
+    public Classificaton getCategory() {
         return category;
     }
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public Starter getStarter() {
+        return starter;
     }
 }

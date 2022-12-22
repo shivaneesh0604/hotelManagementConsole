@@ -1,13 +1,15 @@
 package RestaurentManagementConsole;
 
 import RestaurentManagementConsole.Manager.Manager;
+import RestaurentManagementConsole.Restaurent.Restaurent;
 import RestaurentManagementConsole.customer.Customer;
 
 public class App {
     public static void main(String[] args) {
+        Restaurent.getInstanceRestaurent().addRestaurentMandatoryItemspeople();
         Manager m1 = new Manager(1, "ram");
 
-        m1.enterManagerUI();
+        m1.managerInterface();
 
         while (true) {
             System.out.println("------------");

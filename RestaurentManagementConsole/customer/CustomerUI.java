@@ -5,13 +5,13 @@ import java.util.Scanner;
 
 import RestaurentManagementConsole.Cashier.Bill;
 import RestaurentManagementConsole.Orders.Order;
-import RestaurentManagementConsole.Restaurent.CustomerData;
+import RestaurentManagementConsole.Restaurent.CustomerInterface;
 import RestaurentManagementConsole.Restaurent.Restaurent;
 import RestaurentManagementConsole.Restaurent.Waiter;
 import RestaurentManagementConsole.menu.UserMenu;
 
 public class CustomerUI {
-    private CustomerData customerData = Restaurent.getInstanceRestaurent();
+    private CustomerInterface customerData = Restaurent.getInstanceRestaurent();
 
     public void enterTheRestaurent(Customer customer) {
 
@@ -20,7 +20,6 @@ public class CustomerUI {
         System.out.println("enter table number to sit");
         String tablenumber = in.next();
         Waiter waiter = customerData.getWaiter(tablenumber, customer.getId());
-
         while (true) {
             System.out.println(
                     "press 1 for asking menu \n 2 to add new orders \n 3 for deleteOrder \n 4 for confirm order \n 5 for asking bill and paying  ");

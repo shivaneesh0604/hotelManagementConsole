@@ -9,23 +9,22 @@ import RestaurentManagementConsole.Cashier.Cashier;
 import RestaurentManagementConsole.Orders.Order;
 import RestaurentManagementConsole.Orders.OrderList;
 import RestaurentManagementConsole.RestaurentApplication.KitchenSystem;
-import RestaurentManagementConsole.menu.Menu;
 import RestaurentManagementConsole.menu.UserMenu;
 
 public class Waiter {
 
     private final int id;
     private final String name;
-    private UserMenu menu;
     private final HashMap<Integer, OrderList> orders;
     private final ArrayList<String> Tablenumbers;
+    private WaiterInterface waiterInterface ; 
 
     public Waiter(int waiter_id, String name) {
         this.id = waiter_id;
         this.name = name;
         Tablenumbers = new ArrayList<>();
         orders = new HashMap<>();
-        menu = Menu.getinstance();
+        waiterInterface = Restaurent.getInstanceRestaurent();
     }
 
     void assignCustomer(int customerid) {
@@ -37,7 +36,7 @@ public class Waiter {
 
         OrderList orders1 = orders.get(customerid);
         boolean foodExists = false;
-        foodExists = menu.checkFoodAvailability(foodName);
+        foodExists = waiterInterface.getUserMenu().checkFoodAvailability(foodName);
         if (foodExists == false) {
             System.out.println("Enter the right foodname to order");
         } else {
@@ -70,7 +69,7 @@ public class Waiter {
 
     public void DeleteOrder(int customerid, String foodName, int quantity) {
         boolean foodExists = false;
-        foodExists = menu.checkFoodAvailability(foodName);
+        foodExists = waiterInterface.getUserMenu().checkFoodAvailability(foodName);
         if (foodExists == false) {
             System.out.println("Enter the right foodname to delete order since this food in not available in menu");
             return;
@@ -101,19 +100,18 @@ public class Waiter {
 
     public Bill askbill(int customerid) {
         OrderList order = this.orders.get(customerid);
-        FetchCashier fetchCashier = Restaurent.getInstanceRestaurent();
-        Cashier cashier = fetchCashier.returnCashier();
+        Cashier cashier = waiterInterface.returnCashier();
         return cashier.generateBill(order.getOrders(), order.getOrderId());
     }
 
     public void paybill(float paymentAmount, int customerid) {
-        FetchCashier fetchCashier = Restaurent.getInstanceRestaurent();
+        WaiterInterface fetchCashier = Restaurent.getInstanceRestaurent();
         Cashier cashier = fetchCashier.returnCashier();
         cashier.payBill(paymentAmount, orders.get(customerid).getOrderId());
     }
 
     public UserMenu providesMenu() {
-        return menu;
+        return waiterInterface.getUserMenu();
     }
 
     List<String> getTablenumbers() {

@@ -21,6 +21,11 @@ public class Manager {
         managerui.enterRestaurent();
     }
 
+    public void managerInterface(){
+        ManagerUI2 managerUI2 = new ManagerUI2();
+        managerUI2.managerinterface();
+    }
+
     public int getId() {
         return id;
     }

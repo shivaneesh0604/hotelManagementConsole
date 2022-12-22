@@ -4,16 +4,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import RestaurentManagementConsole.Orders.Order;
+import RestaurentManagementConsole.Restaurent.CashierInterface;
+import RestaurentManagementConsole.Restaurent.Restaurent;
 
 public class Cashier {
 
     private final int id;
     private final String name;
     private HashMap<Integer, Bill> bills = new HashMap<>();
+    private final CashierInterface menu;
+
 
     private Cashier(int id, String name) {
         this.id = id;
         this.name = name;
+        menu = Restaurent.getInstanceRestaurent();
     }
 
     private static Cashier cashier = null;
@@ -26,7 +31,7 @@ public class Cashier {
     }
 
     public Bill generateBill(ArrayList<Order> order, int orderid) {
-        Bill bill = new Bill(order,orderid);
+        Bill bill = new Bill(order,orderid,menu);
         bills.put(orderid, bill);
         return bill;
     }

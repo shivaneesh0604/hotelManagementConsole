@@ -2,7 +2,7 @@ package RestaurentManagementConsole.Restaurent;
 
 import RestaurentManagementConsole.customer.Customer;
 
-public interface CustomerData {
+public interface CustomerInterface {
     
     public void addCustomerToRestaurent(Customer customer);
 

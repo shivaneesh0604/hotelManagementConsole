@@ -9,31 +9,24 @@ import RestaurentManagementConsole.Cashier.Cashier;
 import RestaurentManagementConsole.RestaurentApplication.Chef;
 import RestaurentManagementConsole.RestaurentApplication.Cook;
 import RestaurentManagementConsole.customer.Customer;
-import RestaurentManagementConsole.menu.Category;
+import RestaurentManagementConsole.menu.Classificaton;
 import RestaurentManagementConsole.menu.Item;
 import RestaurentManagementConsole.menu.Menu;
+import RestaurentManagementConsole.menu.Starter;
+import RestaurentManagementConsole.menu.UserMenu;
 
-public class Restaurent implements CustomerData, WaiterData, WorkerData,FetchCashier,FetchChef {
+public class Restaurent implements CustomerInterface, ManagerInterface, WaiterInterface, KitchenSystemInterface,
+        CashierInterface, ChefInterface {
 
     private ArrayList<Waiter> waiters = new ArrayList<Waiter>();
     private ArrayList<Customer> customers = new ArrayList<>();
-    private ArrayList<Cook> workers = new ArrayList<Cook>();
+    private ArrayList<Cook> cooks = new ArrayList<Cook>();
     private ArrayList<Chef> chefs = new ArrayList<Chef>();
-    private Cashier cashier = Cashier.getInstance();
+    private Cashier cashier;
     private Menu menu = Menu.getinstance();
 
     private Restaurent() {
-        waiters.add(new Waiter(1, "shiva"));
-        waiters.add(new Waiter(2, "sankar"));
-        waiters.add(new Waiter(1, "sathya"));
-        chefs.add(new Chef(1, "raju"));
-        chefs.add(new Chef(1, "ramu"));
-        Cook cook1 = new Cook(1, "naveen");
-        addWorkerToRestaurent(cook1);
-        Cook cook2 = new Cook(2, "milky");
-        addWorkerToRestaurent(cook2);
-        menu.addMenusItems(new Item("DOSA", 30, Category.VEG));
-        menu.addMenusItems(new Item("chicken", 100, Category.NONVEG));
+
     }
 
     private static Restaurent restaurent = null;
@@ -45,10 +38,36 @@ public class Restaurent implements CustomerData, WaiterData, WorkerData,FetchCas
         return restaurent;
     }
 
+    public void addRestaurentMandatoryItemspeople() {
+        Waiter waiter1 = new Waiter(1, "shiva");
+        waiter1.setTableNumber("t1");
+        waiters.add(waiter1);
+
+        Waiter waiter2 = new Waiter(2, "sankar");
+        waiter2.setTableNumber("t2");
+        waiters.add(waiter2);
+
+        Waiter waiter3 = new Waiter(1, "sathya");
+        waiter2.setTableNumber("t3");
+        waiters.add(waiter3);
+        chefs.add(new Chef(1, "raju"));
+        chefs.add(new Chef(1, "ramu"));
+        cashier = Cashier.getInstance();
+        Cook cook1 = new Cook(1, "naveen");
+        addWorkerToRestaurent(cook1);
+        Cook cook2 = new Cook(2, "milky");
+        addWorkerToRestaurent(cook2);
+        menu.addMenusItems(new Item("DOSA", 30, Classificaton.VEG, Starter.NOTSTARTER));
+        menu.addMenusItems(new Item("ChickenFriedRice", 100, Classificaton.NONVEG, Starter.NOTSTARTER));
+        menu.addMenusItems(new Item("GrillChicken", 300, Classificaton.NONVEG, Starter.STARTER));
+        menu.addMenusItems(new Item("Panner Tikka", 130, Classificaton.VEG, Starter.STARTER));
+    }
+
     @Override
     public List<String> returnTableNumbers(int waiterid) {
         for (Waiter waiter1 : waiters) {
             if (waiterid == waiter1.getId()) {
+
                 return waiter1.getTablenumbers();
             }
         }
@@ -102,10 +121,7 @@ public class Restaurent implements CustomerData, WaiterData, WorkerData,FetchCas
 
     @Override
     public void addWorkerToRestaurent(Cook cook) {
-        this.workers.add(cook);
-        for (Chef chef : chefs) {
-            chef.addCookToChef(cook);
-        }
+        this.cooks.add(cook);
     }
 
     @Override
@@ -130,7 +146,7 @@ public class Restaurent implements CustomerData, WaiterData, WorkerData,FetchCas
     }
 
     @Override
-    public Cashier returnCashier(){
+    public Cashier returnCashier() {
         return this.cashier;
     }
 
@@ -140,5 +156,27 @@ public class Restaurent implements CustomerData, WaiterData, WorkerData,FetchCas
         return chefs.get(rand.nextInt(chefs.size()));
     }
 
-    
+    @Override
+    public UserMenu getUserMenu() {
+        return this.menu;
+    }
+
+    @Override
+    public Menu getFullMenu() {
+        return this.menu;
+    }
+
+    @Override
+    public ArrayList<Item> getMenuItems() {
+
+        return menu.getMenuItems();
+    }
+
+    @Override
+    public Cook getRandomCook() {
+        Random random = new Random();
+        int index = random.nextInt(cooks.size());
+        return cooks.get(index);
+    }
+
 }

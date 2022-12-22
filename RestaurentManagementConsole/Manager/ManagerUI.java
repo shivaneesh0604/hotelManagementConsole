@@ -5,16 +5,15 @@ import java.util.Scanner;
 
 import RestaurentManagementConsole.Restaurent.Restaurent;
 import RestaurentManagementConsole.Restaurent.Waiter;
-import RestaurentManagementConsole.Restaurent.WaiterData;
-import RestaurentManagementConsole.Restaurent.WorkerData;
+import RestaurentManagementConsole.Restaurent.ManagerInterface;
 import RestaurentManagementConsole.RestaurentApplication.Chef;
 import RestaurentManagementConsole.RestaurentApplication.Cook;
 import RestaurentManagementConsole.menu.Item;
 import RestaurentManagementConsole.menu.Menu;
+import RestaurentManagementConsole.menu.Starter;
 
 public class ManagerUI {
-    private WaiterData waiterDatabase = Restaurent.getInstanceRestaurent();
-    private WorkerData workerDatabase = Restaurent.getInstanceRestaurent();
+    private ManagerInterface managerInterface = Restaurent.getInstanceRestaurent();
 
     public void enterRestaurent() {
         Scanner scanner = new Scanner(System.in);
@@ -30,7 +29,7 @@ public class ManagerUI {
                         System.out.println("enter id for adding");
                         int id = scanner.nextInt();
                         Waiter w1 = new Waiter(id, name);
-                        waiterDatabase.addWaitersToRestaurent(w1);
+                        managerInterface.addWaitersToRestaurent(w1);
                         break;
 
                     case 2:
@@ -40,7 +39,7 @@ public class ManagerUI {
                         System.out.println("enter id for adding");
                         int id1 = scanner.nextInt();
                         Cook cook = new Cook(id1, name1);
-                        workerDatabase.addWorkerToRestaurent(cook);
+                        managerInterface.addWorkerToRestaurent(cook);
                         break;
 
                     case 3:
@@ -50,13 +49,13 @@ public class ManagerUI {
                         System.out.println("enter id for adding");
                         int id2 = scanner.nextInt();
                         Chef chef = new Chef(id2, name2);
-                        workerDatabase.addChefToRestaurent(chef);
+                        managerInterface.addChefToRestaurent(chef);
                         break;
 
                     case 4:
                         System.out.println("enter waiterid to add tablenumer available ids are ");
                         int waiterid = scanner.nextInt();
-                        List<String> tableForThisWaiter = waiterDatabase
+                        List<String> tableForThisWaiter = managerInterface
                                 .returnTableNumbers(waiterid);
                         System.out.println(tableForThisWaiter);
                         System.out.println("enter tablenumber to add");
@@ -66,14 +65,14 @@ public class ManagerUI {
                         if (tableForThisWaiter.contains(addtablenumber)) {
                             System.out.println("please enter other table number than this " + tableForThisWaiter);
                         } else {
-                            waiterDatabase.addTableNumbersToWaiters(addtablenumber, waiterid);
+                            managerInterface.addTableNumbersToWaiters(addtablenumber, waiterid);
                         }
                         break;
 
                     case 5:
                         System.out.println("enter waiterid to add tablenumer available ids are ");
                         int waiterid1 = scanner.nextInt();
-                        List<String> tableForThisWaiter1 = waiterDatabase
+                        List<String> tableForThisWaiter1 = managerInterface
                                 .returnTableNumbers(waiterid1);
                         System.out.println(tableForThisWaiter1);
                         System.out.println("enter tablenumber to delete");
@@ -82,7 +81,7 @@ public class ManagerUI {
 
                         if (tableForThisWaiter1.contains(deletetablenumber)) {
                             System.out.println(Restaurent.getInstanceRestaurent().returnTableNumbers(waiterid1));
-                            waiterDatabase.deleteTableNumberforWaiter(deletetablenumber, waiterid1);
+                            managerInterface.deleteTableNumberforWaiter(deletetablenumber, waiterid1);
                         } else {
                             System.out.println("please enter available table number");
                             System.out.println("Available tablenumbers are " + tableForThisWaiter1);
@@ -92,7 +91,8 @@ public class ManagerUI {
 
                     case 6:
                         System.out.println("food available are ");
-                        Menu.getinstance().showMenu();
+                        Menu menu = managerInterface.getFullMenu();
+                        menu.showMenu();
                         System.out.println("enter foodbname to add");
                         scanner.nextLine();
                         String foodname = scanner.nextLine();
@@ -100,29 +100,33 @@ public class ManagerUI {
                         int price = scanner.nextInt();
                         System.out.println("enter category veg or nonveg for veg press 1 or nonveg press 2");
                         int category = scanner.nextInt();
+                        System.out.println("enter 1 for starter 2 for not a starter");
+                        int starter = scanner.nextInt();
                         Item item = new Item(foodname, price,
-                                RestaurentManagementConsole.menu.Category.contains(category));
-                        Menu.getinstance().addMenusItems(item);
+                                RestaurentManagementConsole.menu.Classificaton.contains(category),Starter.contains(starter));
+                        menu.addMenusItems(item);
                         break;
 
                     case 7:
                         System.out.println("food available are ");
-                        Menu.getinstance().showMenu();
+                        Menu menu1 = managerInterface.getFullMenu();
+                        menu1.showMenu();
                         System.out.println("enter foodname to alter");
                         scanner.nextLine();
                         String foodname2 = scanner.nextLine();
                         System.out.println("enter price to alter");
                         int price2 = scanner.nextInt();
-                        Menu.getinstance().alterMenuItems(foodname2, price2);
+                        menu1.alterMenuItems(foodname2, price2);
                         break;
 
                     case 8:
                         System.out.println("food available are ");
-                        Menu.getinstance().showMenu();
+                        Menu menu2 = managerInterface.getFullMenu();
+                        menu2.showMenu();
                         System.out.println("enter foodname to delete from menu");
                         scanner.nextLine();
                         String foodname3 = scanner.nextLine();
-                        Menu.getinstance().deleteMenuItems(foodname3);
+                        menu2.deleteMenuItems(foodname3);
                         break;
 
                 }
