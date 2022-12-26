@@ -6,7 +6,7 @@ import RestaurentManagementConsole.KitchenManagers.Chef;
 import RestaurentManagementConsole.KitchenManagers.Cook;
 import RestaurentManagementConsole.menu.Menu;
 
-public interface ManagerInterface {
+public interface RestaurentManagementFunctions {
     public void addWaitersToRestaurent(Waiter waiter);
 
     public void addTableNumbersToWaiters(String tablenumber, int waiterid);

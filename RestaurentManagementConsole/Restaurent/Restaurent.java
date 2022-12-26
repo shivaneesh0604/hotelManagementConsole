@@ -13,7 +13,7 @@ import RestaurentManagementConsole.menu.Menu;
 import RestaurentManagementConsole.menu.Starter;
 import RestaurentManagementConsole.menu.UserMenu;
 
-public class Restaurent implements RestaurentPublicFunctions, ManagerInterface, WaiterInterface, KitchenSystemInterface,
+public class Restaurent implements RestaurentPublicFunctions, RestaurentManagementFunctions, WaiterInterface, KitchenSystemInterface,
          ChefInterface {
 
     private ArrayList<Waiter> waiters = new ArrayList<Waiter>();
@@ -133,7 +133,6 @@ public class Restaurent implements RestaurentPublicFunctions, ManagerInterface, 
         chefs.add(chef);
     }
 
-    
     private Waiter getWaiter(String TableNumber, int customerid) {
         for (Waiter waiter : waiters) {
             if (waiter.getTablenumbers().contains(TableNumber)) {
@@ -163,6 +162,12 @@ public class Restaurent implements RestaurentPublicFunctions, ManagerInterface, 
     @Override
     public Menu getFullMenu() {
         return this.menu;
+    }
+
+    
+    public ArrayList<Item> getMenuItems() {
+
+        return menu.getMenuItems();
     }
 
     @Override

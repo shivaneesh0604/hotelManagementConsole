@@ -2,7 +2,7 @@ package RestaurentManagementConsole.Manager;
 
 import RestaurentManagementConsole.KitchenManagers.Chef;
 import RestaurentManagementConsole.KitchenManagers.Cook;
-import RestaurentManagementConsole.Restaurent.ManagerInterface;
+import RestaurentManagementConsole.Restaurent.RestaurentManagementFunctions;
 import RestaurentManagementConsole.Restaurent.Restaurent;
 import RestaurentManagementConsole.Restaurent.Waiter;
 import RestaurentManagementConsole.menu.Item;
@@ -10,7 +10,7 @@ import RestaurentManagementConsole.menu.Menu;
 import RestaurentManagementConsole.menu.Starter;
 
 public class ManagerUI2 {
-    private ManagerInterface managerInterface = Restaurent.getInstanceRestaurent();
+    private RestaurentManagementFunctions managerInterface = Restaurent.getInstanceRestaurent();
 
     public void managerinterface() {
         Waiter w1 = new Waiter(5, "rajagopal");

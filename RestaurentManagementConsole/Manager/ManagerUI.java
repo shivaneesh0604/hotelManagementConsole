@@ -7,13 +7,13 @@ import RestaurentManagementConsole.Restaurent.Restaurent;
 import RestaurentManagementConsole.Restaurent.Waiter;
 import RestaurentManagementConsole.KitchenManagers.Chef;
 import RestaurentManagementConsole.KitchenManagers.Cook;
-import RestaurentManagementConsole.Restaurent.ManagerInterface;
+import RestaurentManagementConsole.Restaurent.RestaurentManagementFunctions;
 import RestaurentManagementConsole.menu.Item;
 import RestaurentManagementConsole.menu.Menu;
 import RestaurentManagementConsole.menu.Starter;
 
 public class ManagerUI {
-    private ManagerInterface managerInterface = Restaurent.getInstanceRestaurent();
+    private RestaurentManagementFunctions managerInterface = Restaurent.getInstanceRestaurent();
 
     public void enterRestaurent() {
         Scanner scanner = new Scanner(System.in);

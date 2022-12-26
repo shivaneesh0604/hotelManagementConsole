@@ -9,17 +9,14 @@ import RestaurentManagementConsole.menu.Item;
 public class Bill {
 
     private final ArrayList<Item> menuItems = Restaurent.getInstanceRestaurent().getMenuItems();
-    private final ArrayList<Order> order;
-    private final int orderid;
+    private final ArrayList<Order> orders;
     private float totalAmount;
 
     public Bill(ArrayList<Order> order, int orderid) {
-        this.order = order;
-        this.orderid = orderid;
+        this.orders = order;
     }
 
     public float ReadBill() {
-        System.out.println("\norder id is " + orderid);
         System.out.format(
                 "-----------------------------------------------------------------------------------------------------------------------------------");
         System.out.print("\nProductName\t\tQuantity\t\tRate \t\t\tTotal Price\n");
@@ -28,7 +25,7 @@ public class Bill {
         int totalPrice = 0;
         int price = 0;
         // String Bill = "";
-        for (Order newOrder : order) {
+        for (Order newOrder : orders) {
             for (Item item : menuItems) {
                 if (item.getFoodName().equals(newOrder.getFoodname())) {
                     price = item.getPrice() * newOrder.getQuantity();
@@ -49,8 +46,8 @@ public class Bill {
         return totalAmount;
     }
 
-    public ArrayList<Order> getOrder() {
-        return order;
+    public ArrayList<Order> getOrders() {
+        return orders;
     }
 
 }
