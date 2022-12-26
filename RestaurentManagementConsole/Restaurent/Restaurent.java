@@ -14,7 +14,7 @@ import RestaurentManagementConsole.menu.Starter;
 import RestaurentManagementConsole.menu.UserMenu;
 
 public class Restaurent implements RestaurentPublicFunctions, ManagerInterface, WaiterInterface, KitchenSystemInterface,
-        CashierInterface, ChefInterface {
+         ChefInterface {
 
     private ArrayList<Waiter> waiters = new ArrayList<Waiter>();
     private ArrayList<Cook> cooks = new ArrayList<Cook>();
@@ -163,12 +163,6 @@ public class Restaurent implements RestaurentPublicFunctions, ManagerInterface, 
     @Override
     public Menu getFullMenu() {
         return this.menu;
-    }
-
-    @Override
-    public ArrayList<Item> getMenuItems() {
-
-        return menu.getMenuItems();
     }
 
     @Override

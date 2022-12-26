@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import RestaurentManagementConsole.Orders.Order;
-import RestaurentManagementConsole.Restaurent.CashierInterface;
 import RestaurentManagementConsole.Restaurent.Restaurent;
 
 public class Cashier {
@@ -12,13 +11,11 @@ public class Cashier {
     private final int id;
     private final String name;
     private HashMap<Integer, Bill> bills = new HashMap<>();
-    private final CashierInterface cashierInterface;
 
 
     private Cashier(int id, String name) {
         this.id = id;
         this.name = name;
-        cashierInterface = Restaurent.getInstanceRestaurent();
     }
 
     private static Cashier cashier = null;
