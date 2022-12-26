@@ -6,9 +6,10 @@ import java.util.List;
 
 import RestaurentManagementConsole.Cashier.Bill;
 import RestaurentManagementConsole.Cashier.Cashier;
+import RestaurentManagementConsole.KitchenOrderSystem.KitchenOrderSystem;
+import RestaurentManagementConsole.KitchenOrderSystem.KitchenSystem;
 import RestaurentManagementConsole.Orders.Order;
 import RestaurentManagementConsole.Orders.OrderList;
-import RestaurentManagementConsole.RestaurentApplication.KitchenSystem;
 import RestaurentManagementConsole.menu.UserMenu;
 
 public class Waiter {
@@ -105,8 +106,7 @@ public class Waiter {
     }
 
     public void paybill(float paymentAmount, int customerid) {
-        WaiterInterface fetchCashier = Restaurent.getInstanceRestaurent();
-        Cashier cashier = fetchCashier.returnCashier();
+        Cashier cashier = waiterInterface.returnCashier();
         cashier.payBill(paymentAmount, orders.get(customerid).getOrderId());
     }
 

@@ -1,6 +1,6 @@
 package RestaurentManagementConsole.Restaurent;
 
-import RestaurentManagementConsole.customer.Customer;
+import RestaurentManagementConsole.Customer.Customer;
 
 public interface CustomerInterface {
     

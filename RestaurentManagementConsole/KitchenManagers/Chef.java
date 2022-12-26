@@ -1,7 +1,6 @@
-package RestaurentManagementConsole.RestaurentApplication;
+package RestaurentManagementConsole.KitchenManagers;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import RestaurentManagementConsole.Orders.Order;
 import RestaurentManagementConsole.Restaurent.ChefInterface;

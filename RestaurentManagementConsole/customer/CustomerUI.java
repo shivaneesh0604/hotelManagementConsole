@@ -1,4 +1,4 @@
-package RestaurentManagementConsole.customer;
+package RestaurentManagementConsole.Customer;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -11,15 +11,15 @@ import RestaurentManagementConsole.Restaurent.Waiter;
 import RestaurentManagementConsole.menu.UserMenu;
 
 public class CustomerUI {
-    private CustomerInterface customerData = Restaurent.getInstanceRestaurent();
+    private CustomerInterface customerInterface = Restaurent.getInstanceRestaurent();
 
     public void enterTheRestaurent(Customer customer) {
 
-        customerData.addCustomerToRestaurent(customer);
+        customerInterface.addCustomerToRestaurent(customer);
         Scanner in = new Scanner(System.in);
         System.out.println("enter table number to sit");
         String tablenumber = in.next();
-        Waiter waiter = customerData.getWaiter(tablenumber, customer.getId());
+        Waiter waiter = customerInterface.getWaiter(tablenumber, customer.getId());
         while (true) {
             System.out.println(
                     "press 1 for asking menu \n 2 to add new orders \n 3 for deleteOrder \n 4 for confirm order \n 5 for asking bill and paying  ");
@@ -46,7 +46,6 @@ public class CustomerUI {
                     System.out.println("enter the quantity");
                     int quantity1 = in.nextInt();
                     try {
-
                         waiter.DeleteOrder(customer.getId(), foodname1, quantity1);
                     } catch (Exception e) {
                         System.out.println("this food is not ordered");

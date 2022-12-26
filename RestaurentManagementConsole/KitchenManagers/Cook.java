@@ -1,4 +1,4 @@
-package RestaurentManagementConsole.RestaurentApplication;
+package RestaurentManagementConsole.KitchenManagers;
 
 import RestaurentManagementConsole.Orders.Order;
 

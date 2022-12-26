@@ -1,4 +1,4 @@
-package RestaurentManagementConsole.customer;
+package RestaurentManagementConsole.Customer;
 
 import java.util.ArrayList;
 
@@ -10,11 +10,11 @@ import RestaurentManagementConsole.Restaurent.Waiter;
 import RestaurentManagementConsole.menu.UserMenu;
 
 public class CustomerUI2 {
-    private CustomerInterface customerData = Restaurent.getInstanceRestaurent();
+    private CustomerInterface customerInterface = Restaurent.getInstanceRestaurent();
 
     public void entersRestaurent(Customer customer) {
-        customerData.addCustomerToRestaurent(customer);
-        Waiter waiter = customerData.getWaiter("t1", customer.getId());
+        customerInterface.addCustomerToRestaurent(customer);
+        Waiter waiter = customerInterface.getWaiter("t1", customer.getId());
         UserMenu menu = waiter.providesMenu();
         menu.showMenu();
         System.out.println("for ordering the food");
@@ -27,13 +27,13 @@ public class CustomerUI2 {
 
         System.out.println("receive order ");
         ArrayList<Order> orders = waiter.processOrder(customer.getId());
+
         customer.receiveOrder(orders);
 
         System.out.println("bill payment process ");
         Bill bill = waiter.askbill(customer.getId());
         bill.ReadBill();
         waiter.paybill(30, customer.getId());
-
 
     }
 }

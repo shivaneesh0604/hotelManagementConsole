@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Random;
 
 import RestaurentManagementConsole.Cashier.Cashier;
-import RestaurentManagementConsole.RestaurentApplication.Chef;
-import RestaurentManagementConsole.RestaurentApplication.Cook;
-import RestaurentManagementConsole.customer.Customer;
+import RestaurentManagementConsole.Customer.Customer;
+import RestaurentManagementConsole.KitchenManagers.Chef;
+import RestaurentManagementConsole.KitchenManagers.Cook;
 import RestaurentManagementConsole.menu.Classificaton;
 import RestaurentManagementConsole.menu.Item;
 import RestaurentManagementConsole.menu.Menu;

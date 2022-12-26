@@ -1,4 +1,4 @@
-package RestaurentManagementConsole.RestaurentApplication;
+package RestaurentManagementConsole.KitchenOrderSystem;
 
 import java.util.ArrayList;
 

@@ -2,8 +2,8 @@ package RestaurentManagementConsole.Restaurent;
 
 import java.util.List;
 
-import RestaurentManagementConsole.RestaurentApplication.Chef;
-import RestaurentManagementConsole.RestaurentApplication.Cook;
+import RestaurentManagementConsole.KitchenManagers.Chef;
+import RestaurentManagementConsole.KitchenManagers.Cook;
 import RestaurentManagementConsole.menu.Menu;
 
 public interface ManagerInterface {

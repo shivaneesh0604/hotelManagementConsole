@@ -12,13 +12,13 @@ public class Cashier {
     private final int id;
     private final String name;
     private HashMap<Integer, Bill> bills = new HashMap<>();
-    private final CashierInterface menu;
+    private final CashierInterface cashierInterface;
 
 
     private Cashier(int id, String name) {
         this.id = id;
         this.name = name;
-        menu = Restaurent.getInstanceRestaurent();
+        cashierInterface = Restaurent.getInstanceRestaurent();
     }
 
     private static Cashier cashier = null;
@@ -30,8 +30,8 @@ public class Cashier {
         return cashier;
     }
 
-    public Bill generateBill(ArrayList<Order> order, int orderid) {
-        Bill bill = new Bill(order,orderid,menu);
+    public Bill generateBill(ArrayList<Order> listOfOrders, int orderid) {
+        Bill bill = new Bill(listOfOrders,orderid,cashierInterface.getMenuItems());
         bills.put(orderid, bill);
         return bill;
     }
@@ -53,5 +53,7 @@ public class Cashier {
     public String getName() {
         return name;
     } 
+
+    
 
 }

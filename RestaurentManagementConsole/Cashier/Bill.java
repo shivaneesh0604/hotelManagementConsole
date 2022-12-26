@@ -3,20 +3,19 @@ package RestaurentManagementConsole.Cashier;
 import java.util.ArrayList;
 
 import RestaurentManagementConsole.Orders.Order;
-import RestaurentManagementConsole.Restaurent.CashierInterface;
 import RestaurentManagementConsole.menu.Item;
 
 public class Bill {
 
-    private final CashierInterface menu;
+    private final ArrayList<Item> menuItems;
     private final ArrayList<Order> order;
     private final int orderid;
     private float totalAmount;
 
-    public Bill(ArrayList<Order> order,int orderid,CashierInterface menu) {
+    public Bill(ArrayList<Order> order,int orderid,ArrayList<Item> menu) {
         this.order = order;
         this.orderid = orderid;
-        this.menu = menu;
+        this.menuItems = menu;
     }
 
     public float ReadBill() {
@@ -30,7 +29,7 @@ public class Bill {
         int price = 0;
         // String Bill = "";
         for (Order newOrder : order) {
-            for (Item item : menu.getMenuItems()) {
+            for (Item item : menuItems) {
                 if (item.getFoodName().equals(newOrder.getFoodname())) {
                     price = item.getPrice() * newOrder.getQuantity();
                     System.out.format("  %-9s             %-9d          %5d               %9d\n", newOrder.getFoodname(),

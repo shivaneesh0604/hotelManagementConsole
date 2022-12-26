@@ -1,15 +1,15 @@
 package RestaurentManagementConsole;
 
+import RestaurentManagementConsole.Customer.Customer;
 import RestaurentManagementConsole.Manager.Manager;
 import RestaurentManagementConsole.Restaurent.Restaurent;
-import RestaurentManagementConsole.customer.Customer;
 
 public class App {
     public static void main(String[] args) {
         Restaurent.getInstanceRestaurent().addRestaurentMandatoryItemspeople();
-        Manager m1 = new Manager(1, "ram");
-
-        m1.managerInterface();
+        User m1 = new Manager(1, "ram");
+        
+        m1.entersUI();
 
         while (true) {
             System.out.println("------------");
@@ -18,10 +18,11 @@ public class App {
             System.out.println("------------");
             System.out.println("------------");
 
-            Customer c1 = new Customer(1, "mani");
+            User c1 = new Customer(1, "mani");
             System.out.println("Customer 1->" + c1.getName());
 
-            c1.enterCustomerUI();
+
+            c1.entersUI();
 
             
             break;

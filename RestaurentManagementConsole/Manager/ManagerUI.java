@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 import RestaurentManagementConsole.Restaurent.Restaurent;
 import RestaurentManagementConsole.Restaurent.Waiter;
+import RestaurentManagementConsole.KitchenManagers.Chef;
+import RestaurentManagementConsole.KitchenManagers.Cook;
 import RestaurentManagementConsole.Restaurent.ManagerInterface;
-import RestaurentManagementConsole.RestaurentApplication.Chef;
-import RestaurentManagementConsole.RestaurentApplication.Cook;
 import RestaurentManagementConsole.menu.Item;
 import RestaurentManagementConsole.menu.Menu;
 import RestaurentManagementConsole.menu.Starter;
