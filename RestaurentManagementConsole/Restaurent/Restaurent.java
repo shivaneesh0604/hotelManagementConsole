@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-
 import RestaurentManagementConsole.Cashier.Cashier;
-import RestaurentManagementConsole.Customer.Customer;
 import RestaurentManagementConsole.KitchenManagers.Chef;
 import RestaurentManagementConsole.KitchenManagers.Cook;
 import RestaurentManagementConsole.menu.Classificaton;
@@ -15,11 +13,10 @@ import RestaurentManagementConsole.menu.Menu;
 import RestaurentManagementConsole.menu.Starter;
 import RestaurentManagementConsole.menu.UserMenu;
 
-public class Restaurent implements CustomerInterface, ManagerInterface, WaiterInterface, KitchenSystemInterface,
+public class Restaurent implements RestaurentPublicFunctions, ManagerInterface, WaiterInterface, KitchenSystemInterface,
         CashierInterface, ChefInterface {
 
     private ArrayList<Waiter> waiters = new ArrayList<Waiter>();
-    private ArrayList<Customer> customers = new ArrayList<>();
     private ArrayList<Cook> cooks = new ArrayList<Cook>();
     private ArrayList<Chef> chefs = new ArrayList<Chef>();
     private Cashier cashier;
@@ -115,9 +112,11 @@ public class Restaurent implements CustomerInterface, ManagerInterface, WaiterIn
     }
 
     @Override
-    public void addCustomerToRestaurent(Customer customer) {
-        customers.add(customer);
+    public Waiter getIN(String tablenumber,int customerid){
+        return getWaiter(tablenumber, customerid);
     }
+
+    
 
     @Override
     public void addWorkerToRestaurent(Cook cook) {
@@ -134,8 +133,8 @@ public class Restaurent implements CustomerInterface, ManagerInterface, WaiterIn
         chefs.add(chef);
     }
 
-    @Override
-    public Waiter getWaiter(String TableNumber, int customerid) {
+    
+    private Waiter getWaiter(String TableNumber, int customerid) {
         for (Waiter waiter : waiters) {
             if (waiter.getTablenumbers().contains(TableNumber)) {
                 waiter.assignCustomer(customerid);

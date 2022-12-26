@@ -31,7 +31,7 @@ public class Cashier {
     }
 
     public Bill generateBill(ArrayList<Order> listOfOrders, int orderid) {
-        Bill bill = new Bill(listOfOrders,orderid,cashierInterface.getMenuItems());
+        Bill bill = new Bill(listOfOrders,orderid);
         bills.put(orderid, bill);
         return bill;
     }

@@ -5,21 +5,20 @@ import java.util.Scanner;
 
 import RestaurentManagementConsole.Cashier.Bill;
 import RestaurentManagementConsole.Orders.Order;
-import RestaurentManagementConsole.Restaurent.CustomerInterface;
+import RestaurentManagementConsole.Restaurent.RestaurentPublicFunctions;
 import RestaurentManagementConsole.Restaurent.Restaurent;
 import RestaurentManagementConsole.Restaurent.Waiter;
 import RestaurentManagementConsole.menu.UserMenu;
 
 public class CustomerUI {
-    private CustomerInterface customerInterface = Restaurent.getInstanceRestaurent();
+    private RestaurentPublicFunctions restaurentPublicFunctions = Restaurent.getInstanceRestaurent();
 
-    public void enterTheRestaurent(Customer customer) {
+    public void enterTheRestaurent(int customerid) {
 
-        customerInterface.addCustomerToRestaurent(customer);
         Scanner in = new Scanner(System.in);
         System.out.println("enter table number to sit");
         String tablenumber = in.next();
-        Waiter waiter = customerInterface.getWaiter(tablenumber, customer.getId());
+        Waiter waiter = restaurentPublicFunctions.getIN(tablenumber,customerid);
         while (true) {
             System.out.println(
                     "press 1 for asking menu \n 2 to add new orders \n 3 for deleteOrder \n 4 for confirm order \n 5 for asking bill and paying  ");
@@ -36,7 +35,7 @@ public class CustomerUI {
                     String foodname = in.nextLine();
                     System.out.println("enter the quantity");
                     int quantity = in.nextInt();
-                    waiter.TakeNewOrder(customer.getId(), foodname, quantity);
+                    waiter.TakeNewOrder(customerid, foodname, quantity);
                     break;
 
                 case 3:
@@ -46,7 +45,7 @@ public class CustomerUI {
                     System.out.println("enter the quantity");
                     int quantity1 = in.nextInt();
                     try {
-                        waiter.DeleteOrder(customer.getId(), foodname1, quantity1);
+                        waiter.DeleteOrder(customerid, foodname1, quantity1);
                     } catch (Exception e) {
                         System.out.println("this food is not ordered");
                     }
@@ -54,19 +53,19 @@ public class CustomerUI {
 
                 case 4:
                     try {
-                        ArrayList<Order> orders = waiter.processOrder(customer.getId());
-                        customer.receiveOrder(orders);
+                        ArrayList<Order> orders = waiter.processOrder(customerid);
+                        receiveOrder(orders);
                     } catch (Exception e) {
                         System.out.println("add an order first");
                     }
                     break;
 
                 case 5:
-                    Bill bill = waiter.askbill(customer.getId());
+                    Bill bill = waiter.askbill(customerid);
                     bill.ReadBill();
                     System.out.println("enter the amount to pay");
                     float paymentAmount = in.nextFloat();
-                    waiter.paybill(paymentAmount, customer.getId());
+                    waiter.paybill(paymentAmount, customerid);
                     break;
             }
             System.out.println("if you want to close options press 1");
@@ -77,6 +76,12 @@ public class CustomerUI {
                 continue;
             }
 
+        }
+    }
+
+    private void receiveOrder(ArrayList<Order> order) {
+        for (Order orders : order) {
+            System.out.println("Foodname received is " + orders.getFoodname() + " quantity is " + orders.getQuantity());
         }
     }
 }

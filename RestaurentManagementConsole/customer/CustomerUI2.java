@@ -4,36 +4,40 @@ import java.util.ArrayList;
 
 import RestaurentManagementConsole.Cashier.Bill;
 import RestaurentManagementConsole.Orders.Order;
-import RestaurentManagementConsole.Restaurent.CustomerInterface;
+import RestaurentManagementConsole.Restaurent.RestaurentPublicFunctions;
 import RestaurentManagementConsole.Restaurent.Restaurent;
 import RestaurentManagementConsole.Restaurent.Waiter;
 import RestaurentManagementConsole.menu.UserMenu;
 
 public class CustomerUI2 {
-    private CustomerInterface customerInterface = Restaurent.getInstanceRestaurent();
+    private RestaurentPublicFunctions RestaurentPublicFunctions = Restaurent.getInstanceRestaurent();
 
-    public void entersRestaurent(Customer customer) {
-        customerInterface.addCustomerToRestaurent(customer);
-        Waiter waiter = customerInterface.getWaiter("t1", customer.getId());
+    public void entersRestaurent(int customerid) {
+        Waiter waiter = RestaurentPublicFunctions.getIN("t1",customerid);
         UserMenu menu = waiter.providesMenu();
         menu.showMenu();
         System.out.println("for ordering the food");
-        waiter.TakeNewOrder(customer.getId(), "GrillChicken", 2);
-        waiter.TakeNewOrder(customer.getId(), "GrillChicken", 2);
-
+        waiter.TakeNewOrder(customerid, "GrillChicken", 2);
+        waiter.TakeNewOrder(customerid, "GrillChicken", 2);
+        
         System.out.println("food to delete");
-        waiter.DeleteOrder(customer.getId(), "GrillChicken", 2);
-        waiter.DeleteOrder(customer.getId(), "GrillChicken", 1);
+        waiter.DeleteOrder(customerid, "GrillChicken", 2);
+        waiter.DeleteOrder(customerid, "GrillChicken", 1);
 
         System.out.println("receive order ");
-        ArrayList<Order> orders = waiter.processOrder(customer.getId());
+        ArrayList<Order> orders = waiter.processOrder(customerid);
 
-        customer.receiveOrder(orders);
+        receiveOrder(orders);
 
         System.out.println("bill payment process ");
-        Bill bill = waiter.askbill(customer.getId());
+        Bill bill = waiter.askbill(customerid);
         bill.ReadBill();
-        waiter.paybill(30, customer.getId());
+        waiter.paybill(30, customerid);
 
+    }
+    private void receiveOrder(ArrayList<Order> order) {
+        for (Order orders : order) {
+            System.out.println("Foodname received is " + orders.getFoodname() + " quantity is " + orders.getQuantity());
+        }
     }
 }

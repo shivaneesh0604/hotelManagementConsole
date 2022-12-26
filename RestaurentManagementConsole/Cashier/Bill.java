@@ -3,23 +3,23 @@ package RestaurentManagementConsole.Cashier;
 import java.util.ArrayList;
 
 import RestaurentManagementConsole.Orders.Order;
+import RestaurentManagementConsole.Restaurent.Restaurent;
 import RestaurentManagementConsole.menu.Item;
 
 public class Bill {
 
-    private final ArrayList<Item> menuItems;
+    private final ArrayList<Item> menuItems = Restaurent.getInstanceRestaurent().getMenuItems();
     private final ArrayList<Order> order;
     private final int orderid;
     private float totalAmount;
 
-    public Bill(ArrayList<Order> order,int orderid,ArrayList<Item> menu) {
+    public Bill(ArrayList<Order> order, int orderid) {
         this.order = order;
         this.orderid = orderid;
-        this.menuItems = menu;
     }
 
     public float ReadBill() {
-        System.out.println("\norder id is "+orderid);
+        System.out.println("\norder id is " + orderid);
         System.out.format(
                 "-----------------------------------------------------------------------------------------------------------------------------------");
         System.out.print("\nProductName\t\tQuantity\t\tRate \t\t\tTotal Price\n");
@@ -32,16 +32,17 @@ public class Bill {
             for (Item item : menuItems) {
                 if (item.getFoodName().equals(newOrder.getFoodname())) {
                     price = item.getPrice() * newOrder.getQuantity();
-                    System.out.format("  %-9s             %-9d          %5d               %9d\n", newOrder.getFoodname(),
+                    System.out.format("  %-9s             %-9d          %5d               %9d\n",
+                            newOrder.getFoodname(),
                             newOrder.getQuantity(), item.getPrice(), price);
                     totalPrice += price;
                 }
             }
         }
-        System.out.println("total price is "+totalPrice);
+        System.out.println("total price is " + totalPrice);
         System.out.println("\n");
         totalAmount = totalPrice;
-        return totalAmount; 
+        return totalAmount;
     }
 
     public float getTotalAmount() {
